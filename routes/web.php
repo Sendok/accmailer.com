@@ -38,4 +38,7 @@ Route::middleware([
     Route::get('/default', function () {
         return view('dashboard.layouts.default');
     });
+    Route::get('/plan', function () {
+        return view('dashboard.pages.plan');
+    });
 });

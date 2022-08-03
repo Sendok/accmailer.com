@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
-    //
+    // plan list
 }

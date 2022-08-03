@@ -71,7 +71,7 @@
             <li><a href="profile.html" class="nav-link"><span data-feather="plus-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Create new Post</span><span class="rui-nav-circle"></span></a></li>
             <li><a href="profile.html" class="nav-link"><span data-feather="users" class="rui-icon rui-icon-stroke-1_5"></span><span>Manage Users</span><span class="rui-nav-circle"></span></a></li>
             <li><a href="profile.html" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Check Updates</span><span class="rui-nav-circle"></span></a></li>
-            <li><a href="logout" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
+            <li><a href="logout" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5 submit"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
           </ul>
         </div><button class="navbar-toggler rui-navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation"><span></span></button>
       </div>

@@ -10,7 +10,7 @@
       <li class="yay-label">Report Verification</li>
       <li><a href="report"><span class="yay-icon"><span data-feather="archive" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Report</span><span class="rui-yaybar-circle"></span></a></li>
       <li class="yay-label">Billing</li>
-      <li><a href="type"><span class="yay-icon"><span data-feather="pocket" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Plan</span><span class="rui-yaybar-circle"></span></a></li>
+      <li><a href="plan"><span class="yay-icon"><span data-feather="pocket" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Plan</span><span class="rui-yaybar-circle"></span></a></li>
       <li><a href="price"><span class="yay-icon"><span data-feather="dollar-sign" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Price</span><span class="rui-yaybar-circle"></span></a></li>
       <li><a href="billing_report"><span class="yay-icon"><span data-feather="archive" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Billing Report</span><span class="rui-yaybar-circle"></span></a></li>
     </ul>

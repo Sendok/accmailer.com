@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    //
+    //cart list to checkut
 }
