@@ -40,5 +40,8 @@ Route::middleware([
     });
     Route::get('/plan', function () {
         return view('dashboard.pages.plan');
+    })->name('plan');
+    Route::get('/checkout', function () {
+        return view('dashboard.pages.checkout');
     });
 });
