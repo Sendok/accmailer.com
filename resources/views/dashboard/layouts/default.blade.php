@@ -308,5 +308,6 @@
     </script>
     <script src="./assets/js/rootui.js"></script>
     <script src="./assets/js/rootui-init.js"></script>
+    <script src="./assets/vendor/selectize/dist/js/standalone/selectize.min.js"></script>
   </body>
 </html>

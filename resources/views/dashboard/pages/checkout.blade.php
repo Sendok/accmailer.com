@@ -26,21 +26,14 @@
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">Plan Pro</h6>
-              <small class="text-muted">30000 Verification Per Month</small>
+              <h6 class="my-0">{{ $resource["plan_name"] }}</h6>
+              <small class="text-muted">{{ $resource["plan_quota"] }} Verification {{ $resource["plan_type"] }}</small>
             </div>
-            <span class="text-muted">$12</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">−$5</span>
+            <span class="text-muted">${{ $resource["plan_price"] }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (IDR)</span>
-            <strong>Rp 200.000</strong>
+            <span>Total (USD)</span>
+            <strong>${{ $resource["plan_price"] }}</strong>
           </li>
         </ul>
 
@@ -49,31 +42,19 @@
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-brand">Payment Method</span>
         </h4>
-        <form class="needs-validation" novalidate="">
-          
+        <form method="GET" action="{{ route('payment') }}">
+          <input type="hidden" class="form-control" name="plan_id" value="{{ $resource['plan_id'] }}">
           <hr class="my-4">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Save this information for next time</label>
-          </div>
-
-          <hr class="my-4">
-
           
-
           <div class="my-3">
-            <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
-              <label class="form-check-label" for="debit">Midtrans</label>
-            </div>
-            <div class="form-check">
-              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
-              <label class="form-check-label" for="paypal">PayPal</label>
-            </div>
-            </div>
-
+          <select class="form-control rui-selectize-element rui-selectize-select rui-selectize-icon" name="payment-method">
+              <option value="midtrans" data-data='{"selectize":"<span stroke-width=\"1.5\" data-feather=\"twitter\" class=\"rui-icon\"></span>"}'>Midtrans</option>
+              <option value="paypal" data-data='{"selectize":"<span stroke-width=\"1.5\" data-feather=\"facebook\" class=\"rui-icon\"></span>"}'>Paypal</option>
+          </select>  
+           
+          </div>
+          
           <hr class="my-4">
-
           <button class="btn btn-outline-brand btn-block justify-content-center submit" type="submit">Continue to checkout</button>
         </form>
       </div>

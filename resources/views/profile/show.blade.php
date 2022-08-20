@@ -1,4 +1,19 @@
-<x-app-layout>
+@extends('dashboard.layouts.default')
+
+@section('title', 'Profile')
+@section('breadcumb')
+<div class="rui-page-title">
+  <div class="container-fluid">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="single">Home</a></li>
+      </ol>
+    </nav>
+    <h1>Profile</h1>
+  </div>
+</div>
+@endsection
+@section('content')    
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -42,4 +57,4 @@
             @endif
         </div>
     </div>
-</x-app-layout>
+@endsection

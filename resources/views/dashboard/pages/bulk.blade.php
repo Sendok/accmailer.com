@@ -17,6 +17,17 @@
 @section('content')     
 <div class="rui-page-content">
   <div class="container-fluid">
+  @if(isset($resource["payment_status"]))
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="alert alert-brand" role="alert">
+            You have payment process that yet completed, please complate to continue.
+          </div>
+        </div>
+      </div>
+    </div>
+    @else
     <div class="rui-profile row vertical-gap">
      <div class="col-lg-6 col-xl-5">
         <div class="card">
@@ -95,7 +106,7 @@
         </div>
       </div>
       </div>
-      
-  </div>
+      @endif
+    </div>
 </div>
 @endsection

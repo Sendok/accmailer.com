@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\SingleController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\BulkController;
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,25 +30,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/single', function () {
-        return view('dashboard.pages.single');
-    });
-    Route::get('/bulk', function () {
-        return view('dashboard.pages.bulk');
-    });
-    Route::get('/api', function () {
-        return view('dashboard.pages.api');
-    });
-    Route::get('/report', function () {
-        return view('dashboard.pages.report');
-    });
-    Route::get('/default', function () {
-        return view('dashboard.layouts.default');
-    });
-    Route::get('/plan', function () {
-        return view('dashboard.pages.plan');
-    })->name('plan');
-    Route::get('/checkout', function () {
-        return view('dashboard.pages.checkout');
-    });
+    Route::get('single', [SingleController::class, 'index'])->name('single');
+    Route::get('plan', [PlanController::class, 'index'])->name('plan');
+    Route::get('checkout/plan/{slug}', [CheckoutController::class, 'checkoutPlan'])->name('checkout.detail');
+    Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
+    Route::get('payment/cancel', [PaymentController::class, 'paymentPaypalCancel'])->name('payment.cancel');
+    Route::get('payment/success', [PaymentController::class, 'paymentPaypalSuccess'])->name('payment.success');
+    Route::get('bulk', [BulkController::class, 'index'])->name('bulk');
+    Route::get('api', [ApiController::class, 'index'])->name('api');
+    Route::get('report', [ReportController::class, 'index'])->name('report');
 });

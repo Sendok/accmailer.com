@@ -1,13 +1,11 @@
 <div class="rui-yaybar-bg"></div>
     <nav class="rui-navbar rui-navbar-top rui-navbar-sticky">
-      <div class="rui-navbar-brand"><a href="dashboard.html" class="rui-navbar-logo"><img src="./assets/images/logo.png" data-src-night="./assets/images/logo-white.png" data-src-day="./assets/images/logo.png" alt="" width="30" height="30"></a><button class="yay-toggle rui-yaybar-toggle" type="button"><span></span></button></div>
+      <div class="rui-navbar-brand"><a href="{{ route('single') }}" class="rui-navbar-logo"><img src="./assets/images/logo.png" data-src-night="./assets/images/logo-white.png" data-src-day="./assets/images/logo.png" alt="" width="30" height="30"></a><button class="yay-toggle rui-yaybar-toggle" type="button"><span></span></button></div>
       <div class="container-fluid">
         <div class="rui-navbar-content">
           <ul class="nav">
           </ul>
           <ul class="nav rui-navbar-right">
-            
-            
             <li class="dropdown dropdown-hover dropdown-triangle dropdown-keep-open"><a class="dropdown-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,12"><span class="btn btn-custom-round"><span data-feather="bell" class="rui-icon rui-icon-stroke-1_5 mr-0"></span><span class="badge badge-circle badge-brand">3</span></span></a>
               <ul class="nav dropdown-menu rui-navbar-dropdown-notice">
                 <li class="rui-navbar-dropdown-title mb-10">
@@ -26,11 +24,11 @@
                 </li>
               </ul>
             </li>
-            <li class="dropdown dropdown-hover dropdown-triangle dropdown-keep-open"><a class="dropdown-item rui-navbar-avatar mnr-6" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/avatar-1.png" alt=""></a>
+            <li class="dropdown dropdown-hover dropdown-triangle dropdown-keep-open"><a class="dropdown-item rui-navbar-avatar mnr-6" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/accmaile-profile.png" alt=""></a>
               <ul class="nav dropdown-menu">
                
-                <li><a href="profile.html" class="nav-link"><span data-feather="users" class="rui-icon rui-icon-stroke-1_5"></span><span>Profile</span><span class="rui-nav-circle"></span></a></li>
-                <li><a href="profile.html" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Billing type</span><span class="rui-nav-circle"></span></a></li>
+                <li><a href="{{ route('profile.show') }}" class="nav-link"><span data-feather="users" class="rui-icon rui-icon-stroke-1_5"></span><span>Profile</span><span class="rui-nav-circle"></span></a></li>
+                <li><a href="{{ route('plan') }}" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Plan</span><span class="rui-nav-circle"></span></a></li>
                 <li><a href="profile.html" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Billing Report</span><span class="rui-nav-circle"></span></a></li>
                 <li><a href="logout" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
               </ul>

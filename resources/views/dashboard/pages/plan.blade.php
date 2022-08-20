@@ -17,6 +17,17 @@
 @section('content')     
 <div class="rui-page-content">
   <div class="container-fluid">
+  @if(isset($resource["payment_status"]))
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="alert alert-brand" role="alert">
+              You have payment process that yet completed, please complate to continue.
+            </div>
+          </div>
+        </div>
+      </div>
+      @else
      <div class="rui-profile row vertical-gap justify-content-center">
             <div class="col-lg-6 col-xl-4">
                 <div class="card">
@@ -42,7 +53,7 @@
                                 <p>x  <span><s>API Verification</s></span></p>
                         <!-- Plan Button -->
                         <div class="plan-button">
-                            <a href="plan" class="btn btn-outline-primary btn-block justify-content-center submit">Checkout</a>
+                            <a href="{{ route('checkout.detail', ['slug' => 1]) }}" class="btn btn-outline-primary btn-block justify-content-center submit">Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -72,7 +83,7 @@
                     <p><span data-feather="check" class="rui-icon rui-icon-stroke-1_5"></span><span>API Verification</span></p>
                     <!-- Plan Button -->
                     <div class="plan-button">
-                        <a href="plan/2" class="btn btn-outline-success btn-block justify-content-center">Checkout</a>
+                        <a href="{{ route('checkout.detail', ['slug' => 2]) }}" class="btn btn-outline-success btn-block justify-content-center">Checkout</a>
                     </div>
                 </div>
                 </div>
@@ -101,13 +112,14 @@
                     <p><span data-feather="check" class="rui-icon rui-icon-stroke-1_5"></span><span>API Verification</span></p>
                     <!-- Plan Button -->
                     <div class="plan-button">
-                        <a href="/plan/3" class="btn btn-outline-brand btn-block justify-content-center">Contact Us</a>
+                        <a href="mailto:accmailer22@gmail.com" class="btn btn-outline-brand btn-block justify-content-center">Contact Us</a>
                     </div>
                     </div>
                 </div>
                 </div>
             </div>
      </div>
+     @endif
   </div>
 </div>
 @endsection
