@@ -28,6 +28,16 @@
           </div>
         </div>
       </div>
+      @elseif(isset($resource["plan_free"]))
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="alert alert-warning" role="alert">
+              Free Plan cannot Access this API Verification, Please upgrade your Plan.
+            </div>
+          </div>
+        </div>
+      </div>
       @else
      <div class="col-12">
         <div class="card">

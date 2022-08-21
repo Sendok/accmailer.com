@@ -20,20 +20,19 @@ class PlanController extends Controller
         $getPlan = $this->user->getPlan();
 		//check if status invoice payment-process
 		$getInvoiceStatus = $this->user->getInvoiceStatus();
-        if($getPlan == null){
-            return redirect()->route('plan');
-        } else
+        
 		if($getInvoiceStatus == 'payment-process'){
 			$data = array(
 				'payment_status'=>'payment-process'
 			);
 			return view('dashboard.pages.plan',["active"=>"plan","resource"=>$data]);
-		} else {
-            $getQuota = $this->user->getQuota();
+		} else 
+        if($getPlan == null){
+            return view('dashboard.pages.plan',["active"=>"plan"]);
+        } else {
+            $plan_id = $getPlan->plan_id;
             $data = array(
-                "quota"=>$getQuota["quota"],
-                "type"=>$getQuota["type"],
-                "user_plan_id"=>$getPlan->id
+                "plan_id"=>$plan_id
             );
             return view('dashboard.pages.plan',["active"=>"plan","resource"=>$data]);
             

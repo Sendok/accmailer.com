@@ -50,7 +50,7 @@
         </li>
     </ul>
 @endif
-@if (session("validate.result"))
+@if (session("validate.next"))
 <div class="col-lg-6 col-xl-7">
     <div class="card">
         <div class="card-body">
@@ -60,37 +60,79 @@
         </div>
         <ul class="list-group list-group-flush rui-profile-task-list">
             <li class="list-group-item">
+            @if(session("validate.next")["status"] == 'valid')
+            <div class="rui-task rui-task-success">
+            @else
             <div class="rui-task rui-task-danger">
+            @endif
                 <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS</a><small class="rui-task-subtitle">INVALID</small></div>
+                <div class="rui-task-content"><a class="rui-task-title" >STATUS</a><small class="rui-task-subtitle" style="text-transform:uppercase;">{{ session("validate.next")["status"] }}</small></div>
             </div>
             </li>
             <li class="list-group-item">
+            @if(session("validate.next")["status"] == 'valid')
             <div class="rui-task rui-task-success">
+            @else
+            <div class="rui-task rui-task-danger">
+            @endif
                 <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                <div class="rui-task-content"><a class="rui-task-title" href="task.html">SMTP HOST</a><small class="rui-task-subtitle">SMTP.GMAIL.COM</small></div>
+                <div class="rui-task-content"><a class="rui-task-title" >EMAIL</a><small class="rui-task-subtitle" style="text-transform:uppercase;">{{ session("validate.next")["email"] }}</small></div>
             </div>
             </li>
             <li class="list-group-item">
+            @if(session("validate.next")["status"] == 'valid')
             <div class="rui-task rui-task-success">
+            @else
+            <div class="rui-task rui-task-danger">
+            @endif
                 <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                <div class="rui-task-content"><a class="rui-task-title" href="task.html">DOMAIN</a><small class="rui-task-subtitle">GMAIL.COM</small></div>
+                <div class="rui-task-content"><a class="rui-task-title" >SMTP HOST</a><small class="rui-task-subtitle" style="text-transform:uppercase;">{{ session("validate.next")["smtp"] }}</small></div>
             </div>
             </li>
             <li class="list-group-item">
+            @if(session("validate.next")["status"] == 'valid')
             <div class="rui-task rui-task-success">
+            @else
+            <div class="rui-task rui-task-danger">
+            @endif
                 <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                <div class="rui-task-content"><a class="rui-task-title" href="task.html">MX RECORD</a><small class="rui-task-subtitle">VALID</small></div>
+                <div class="rui-task-content"><a class="rui-task-title" >DOMAIN</a><small class="rui-task-subtitle" style="text-transform:uppercase;">{{ session("validate.next")["host"] }}</small></div>
             </div>
             </li>
             <li class="list-group-item">
+            @if(session("validate.next")["status"] == 'valid')
             <div class="rui-task rui-task-success">
+            @else
+            <div class="rui-task rui-task-danger">
+            @endif
                 <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                <div class="rui-task-content"><a class="rui-task-title" href="task.html">IP TARGET</a><small class="rui-task-subtitle">17.123.424.12</small></div>
+                <div class="rui-task-content"><a class="rui-task-title" >MX RECORD</a><small class="rui-task-subtitle" style="text-transform:uppercase;">{{ session("validate.next")["type"] }}</small></div>
+            </div>
+            </li>
+            <li class="list-group-item">
+            @if(session("validate.next")["status"] == 'valid')
+            <div class="rui-task rui-task-success">
+            @else
+            <div class="rui-task rui-task-danger">
+            @endif
+                <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
+                <div class="rui-task-content"><a class="rui-task-title" >IP TARGET</a><small class="rui-task-subtitle" style="text-transform:uppercase;">{{ session("validate.next")["target"] }}</small></div>
             </div>
             </li>
 
         </ul>
+        </div>
+    </div>
+</div>
+@endif
+
+@if (session("validate.max"))
+<div class="col-lg-6 col-xl-7">
+    <div class="card">
+        <div class="card-body">
+            <div class="alert alert-danger" role="alert">
+                You have reached the verification limit
+            </div>
         </div>
     </div>
 </div>

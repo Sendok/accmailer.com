@@ -20,15 +20,16 @@ class ReportController extends Controller
         $getPlan = $this->user->getPlan();
 		//check if status invoice payment-process
 		$getInvoiceStatus = $this->user->getInvoiceStatus();
-        if($getPlan == null){
-            return redirect()->route('plan');
-        } else
+        
 		if($getInvoiceStatus == 'payment-process'){
 			$data = array(
 				'payment_status'=>'payment-process'
 			);
 			return view('dashboard.pages.report',["active"=>"report","resource"=>$data]);
-		} else {
+		} else 
+        if($getPlan == null){
+            return redirect()->route('plan');
+        } else {
             $getQuota = $this->user->getQuota();
             $data = array(
                 "quota"=>$getQuota["quota"],

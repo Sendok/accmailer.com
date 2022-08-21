@@ -31,6 +31,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('single', [SingleController::class, 'index'])->name('single');
+    Route::post('single', [SingleController::class, 'validateSingle'])->name('validateSingle.post');
     Route::get('plan', [PlanController::class, 'index'])->name('plan');
     Route::get('checkout/plan/{slug}', [CheckoutController::class, 'checkoutPlan'])->name('checkout.detail');
     Route::get('payment', [PaymentController::class, 'payment'])->name('payment');

@@ -20,22 +20,33 @@ class ApiController extends Controller
         $getPlan = $this->user->getPlan();
 		//check if status invoice payment-process
 		$getInvoiceStatus = $this->user->getInvoiceStatus();
-        if($getPlan == null){
-            return redirect()->route('plan');
-        } else
+        
 		if($getInvoiceStatus == 'payment-process'){
 			$data = array(
 				'payment_status'=>'payment-process'
 			);
 			return view('dashboard.pages.api',["active"=>"api","resource"=>$data]);
-		} else {
-            $getQuota = $this->user->getQuota();
-            $data = array(
-                "quota"=>$getQuota["quota"],
-                "type"=>$getQuota["type"],
-                "user_plan_id"=>$getPlan->id
-            );
-            return view('dashboard.pages.api',["active"=>"api","resource"=>$data]);
+		} else 
+        if($getPlan == null){
+            return redirect()->route('plan');
+        } else{
+            $plan_id = $getPlan->plan_id;
+            if($plan_id == 1){
+                $data = array(
+                    'plan_free'=>true
+                );
+                return view('dashboard.pages.api',["active"=>"api","resource"=>$data]);
+            } else {
+                $getQuota = $this->user->getQuota();
+                $data = array(
+                    "quota"=>$getQuota["quota"],
+                    "type"=>$getQuota["type"],
+                    "user_plan_id"=>$getPlan->id
+                );
+                return view('dashboard.pages.api',["active"=>"api","resource"=>$data]);
+            }
+            
+            
             
         }
     }

@@ -1,3 +1,14 @@
+<?php 
+$ip = 'no';
+$lat = 'no';
+$lon = 'no';
+$query = @unserialize (file_get_contents('http://ip-api.com/php/'.$_SERVER['REMOTE_ADDR']));
+if ($query && $query['status'] == 'success') {
+    $ip = $query["query"];
+    $lat = $query["lat"];
+    $lon = $query["lon"];
+}
+?>
 @extends('dashboard.layouts.default')
 
 @section('title', 'Single Email Verification')
@@ -19,7 +30,7 @@
   <div class="container-fluid">
     
     <div class="rui-profile row vertical-gap">
-    @if (session("validate.result"))
+      @if(session("validate.next") || session("validate.max"))
       <div class="col-lg-6 col-xl-5">
       @else
       <div class="col-lg-12">
@@ -33,12 +44,16 @@
             @else
             <h5>This Day You Have {{ $resource["type"] }} Single Email Validation <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
 
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" action="{{ route('validateSingle.post') }}" novalidate>
                   <div class="row vertical-gap sm-gap">
                       
                       <div class="col-12">
                           <label for="validationEmail">Validating Your email</label>
-                          <input type="email" class="form-control" id="validationEmail" placeholder="Email" required>
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <input type="hidden" name="ip" value="<?=$_SERVER['REMOTE_ADDR']?>">
+                          <input type="hidden" name="lat" value="<?=$lat?>">
+                          <input type="hidden" name="lon" value="<?=$lon?>">
+                          <input type="email" name="email" class="form-control" id="validationEmail" placeholder="email@example.com" required>
                           <div class="invalid-feedback">
                               This value is required.
                           </div>
@@ -54,9 +69,7 @@
           </div>
         </div>
       </div>
-      @if (session("validate.result"))
-        @include('dashboard.partials.message')
-      @endif
+      @include('dashboard.partials.message')
     </div>
   </div>
 </div>

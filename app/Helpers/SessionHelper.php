@@ -17,7 +17,7 @@ class SessionHelper
         $date = date('Y-m-d H:i:s');
         $user = $this->getUser();
         $user_id = $user->id;
-        $getUserPlan = DB::select("select * from user_plan where user_id = ".$user_id." and (end_at < '".$date."' or end_at is null)");
+        $getUserPlan = DB::select("select * from user_plan where user_id = ".$user_id." and (end_at >= '".$date."' or end_at is null)");
         if($getUserPlan == false){
             $getUserPlan = null;
         } else {
@@ -58,5 +58,28 @@ class SessionHelper
             $status = $getInvoice[0]->status;
         }
         return $status;
+    }
+    public function getIDRCurrency($price){
+        // Fetching JSON
+        $req_url = 'https://api.exchangerate-api.com/v4/latest/USD';
+        $response_json = file_get_contents($req_url);
+        // Continuing if we got a result
+        if(false !== $response_json) {
+
+            // Try/catch for json_decode operation
+            try {
+
+            // Decoding
+            $response_object = json_decode($response_json);
+
+            // YOUR APPLICATION CODE HERE, e.g.
+            $IDR_price = round(($price * $response_object->rates->IDR), 2);
+            return $IDR_price;
+            }
+            catch(Exception $e) {
+                // Handle JSON parse error...
+                return false;
+            }
+        }
     }
 }

@@ -32,8 +32,8 @@
             <span class="text-muted">${{ $resource["plan_price"] }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>${{ $resource["plan_price"] }}</strong>
+            <span>Total (USD/IDR)</span>
+            <strong>${{ $resource["plan_price"] }} or Rp {{ $resource["plan_price_idr"] }}</strong>
           </li>
         </ul>
 
