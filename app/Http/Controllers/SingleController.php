@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\SessionHelper;
+use App\Exports\SingleExport;
+use Maatwebsite\Excel\Facades\Excel;
 include(app_path().'/Http/Controllers/mainValidate.php');
 
 class SingleController extends Controller
@@ -66,7 +68,7 @@ class SingleController extends Controller
 			} else {
 				$e_status = 3;
 			}	
-			DB::table('validate_email')->insert([
+			$insert = DB::table('validate_email')->insert([
 				'email' => $data["data"]["email"],
 				'ip_address' => $ip,
 				'lat' => $lat,
@@ -80,8 +82,20 @@ class SingleController extends Controller
 				'user_id' => $getPlan->user_id,
 				'user_plan_id' => $getPlan->id
 			]);
+			$length = 20;
+			$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$charactersLength = strlen($characters);
+			$randomString = '';
+			for ($i = 0; $i < $length; $i++) {
+				$randomString .= $characters[rand(0, $charactersLength - 1)];
+			}
+			$data["data"]["id"] = $randomString.''.DB::getPdo()->lastInsertId();
 			$data = $data["data"];
 			return redirect()->back()->with($status, $data);
 		}
     }
+	public function SingleExport($slug){
+		$id = substr($slug, 20);
+		return Excel::download(new SingleExport($id), 'SingleVerification#accid'.$id.'.xlsx');
+	}
 }

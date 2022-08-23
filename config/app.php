@@ -200,6 +200,7 @@ return [
         * Payment Gateway Providers
         */
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -217,6 +218,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

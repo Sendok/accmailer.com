@@ -56,7 +56,7 @@
         <div class="card-body">
 
         <div class="d-flex align-items-center">
-            <h2 class="card-title mnb-6 mr-auto">Result</h2><button class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" type="button"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span></button>
+            <h2 class="card-title mnb-6 mr-auto">Result</h2><a href="{{ route('singleExport.get', ['slug' => session('validate.next')['id']]) }}" class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span></a>
         </div>
         <ul class="list-group list-group-flush rui-profile-task-list">
             <li class="list-group-item">
