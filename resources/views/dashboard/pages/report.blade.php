@@ -29,6 +29,16 @@
       </div>
     @else
     <div class="table-responsive-md">
+    <div class="alert alert-brand" role="alert">
+        This Report only Show this month Verification, for more report please contact Support. Thanks
+    </div>
+    <br/>
+    <span class="far fa-file-excel"></span>
+    <div class="d-flex align-items-center">
+            <h2 class="card-title mnb-6 mr-auto"></h2><a href="{{ route('reportExport.get', ['slug' => $resource[0]->user_id ]) }}" class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span>DOWNLOAD REPORT</a>
+    </div>
+  
+    <br/>
     <table class="rui-datatable table">
         <thead>
             <tr>
@@ -37,92 +47,64 @@
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    First
+                    EMAIL
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    Last
+                    STATUS
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    Handle
+                    VERIFICATION TYPE
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    SMTP HOST
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    DOMAIN
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    MX RECORD
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    IP TARGET
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
             </tr>
         </thead>
         <tbody>
+        <?php
+          $count = 1;
+          // die(var_dump($resource[1]->id));
+          ?>
+        @foreach ($resource as $data)
+         
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row"><?=$count?></th>
+                <td>{{ $data->email }}</td>
+                <td>
+                  @if($data->status == 'valid')
+                  <span class="badge badge-success">{{ $data->status }}</span>
+                  @elseif($data->status == 'invalid')
+                  <span class="badge badge-danger">{{ $data->status }}</span>
+                  @else
+                  <span class="badge badge-warning">{{ $data->status }}</span>
+                  @endif
+                </td>
+                <td>{{ $data->validate_type }}</td>
+                <td>{{ $data->smtp_host }}</td>
+                <td>{{ $data->domain }}</td>
+                <td>{{ $data->mx_record }}</td>
+                <td>{{ $data->ip_target }}</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+          <?php
+          $count++;
+          ?>
+        @endforeach
         </tbody>
     </table>
     </div>

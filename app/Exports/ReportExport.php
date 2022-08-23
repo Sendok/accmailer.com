@@ -5,10 +5,10 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use App\Models\single_export;
+use App\Models\report_export;
 use Illuminate\Support\Facades\DB;
 
-class SingleExport implements FromCollection,WithHeadings
+class ReportExport implements FromCollection,WithHeadings
 {
     use Exportable;
     public function __construct(int $req)
@@ -22,17 +22,19 @@ class SingleExport implements FromCollection,WithHeadings
     public function collection()
     {
         $request = $this->request;
-        return single_export::where('id', $request)->get(["status","email","smtp_host","domain","mx_record","ip_target"]);
+        return report_export::where('user_id', $request)->get(["email","status","validate_type","smtp_host","domain","mx_record","ip_target","created_at"]);
     }
     public function headings(): array
     {
         return [
-            'STATUS',
             'EMAIL',
+            'STATUS',
+            'VERIFICATION TYPE',
             'SMTP HOST',
             'DOMAIN',
             'MX RECORD',
             'IP TARGET',
+            'VERIFICATION DATE'
         ];
     }
 }

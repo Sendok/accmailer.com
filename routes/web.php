@@ -41,4 +41,5 @@ Route::middleware([
     Route::get('bulk', [BulkController::class, 'index'])->name('bulk');
     Route::get('api', [ApiController::class, 'index'])->name('api');
     Route::get('report', [ReportController::class, 'index'])->name('report');
+    Route::get('report/export/{slug}', [ReportController::class, 'reportExport'])->name('reportExport.get');
 });
