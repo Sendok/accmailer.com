@@ -30,7 +30,7 @@
                 <li><a href="{{ route('profile.show') }}" class="nav-link"><span data-feather="users" class="rui-icon rui-icon-stroke-1_5"></span><span>Profile</span><span class="rui-nav-circle"></span></a></li>
                 <li><a href="{{ route('plan') }}" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Plan</span><span class="rui-nav-circle"></span></a></li>
                 <li><a href="profile.html" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Billing Report</span><span class="rui-nav-circle"></span></a></li>
-                <li><a href="logout" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
+                <li><a href="{{ route('logout') }}" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
               </ul>
             </li>
             <li class="dropdown dropdown-hover dropdown-triangle dropdown-keep-open"><a class="dropdown-item mnr-5" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,12"><span class="btn btn-custom-round"><span data-feather="more-vertical" class="rui-icon rui-icon-stroke-1_5"></span></span></a>
@@ -69,7 +69,7 @@
             <li><a href="profile.html" class="nav-link"><span data-feather="plus-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Create new Post</span><span class="rui-nav-circle"></span></a></li>
             <li><a href="profile.html" class="nav-link"><span data-feather="users" class="rui-icon rui-icon-stroke-1_5"></span><span>Manage Users</span><span class="rui-nav-circle"></span></a></li>
             <li><a href="profile.html" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Check Updates</span><span class="rui-nav-circle"></span></a></li>
-            <li><a href="logout" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5 submit"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
+            <li><a href="{{ route('logout') }}" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5 submit"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
           </ul>
         </div><button class="navbar-toggler rui-navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation"><span></span></button>
       </div>

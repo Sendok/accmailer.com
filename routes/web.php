@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BulkController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,4 +43,5 @@ Route::middleware([
     Route::get('api', [ApiController::class, 'index'])->name('api');
     Route::get('report', [ReportController::class, 'index'])->name('report');
     Route::get('report/export/{slug}', [ReportController::class, 'reportExport'])->name('reportExport.get');
+    Route::get('logout', [UserController::class, 'Logout'])->name('logout');
 });
