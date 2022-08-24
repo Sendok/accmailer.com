@@ -41,6 +41,7 @@ Route::middleware([
     Route::get('payment/success', [PaymentController::class, 'paymentPaypalSuccess'])->name('payment.success');
     Route::get('bulk', [BulkController::class, 'index'])->name('bulk');
     Route::get('api', [ApiController::class, 'index'])->name('api');
+    Route::post('api', [ApiController::class, 'generatApiToken'])->name('api.generate');
     Route::get('report', [ReportController::class, 'index'])->name('report');
     Route::get('report/export/{slug}', [ReportController::class, 'reportExport'])->name('reportExport.get');
     Route::get('logout', [UserController::class, 'Logout'])->name('logout');

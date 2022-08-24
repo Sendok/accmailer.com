@@ -42,12 +42,26 @@
      <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h5>This Day You Have Free Single Email Validation <span class="badge badge-pill badge-success">1000 Validation</span></h5>
-            <p><em>Generate API KEY to use API Verification.</em></p>
+          <h5>This Day You Have {{ $resource["type"] }} API Email Validation <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
+          <p><em>Generate API KEY to use API Verification.</em></p>
             <blockquote class="blockquote">
-                <p class="mb-0">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+                <div class="row">
+                  <div class="col-11">
+                  <p class="mb-0" id='display' onClick='copyText(this)'>{{ $resource["token"] }}</p>
+                  </div>
+                  <div class="col-1">
+                  <a href="" onClick='copyText(display)' data-original-title="Copy to clipboard"><span stroke-width="2"  data-feather="copy"></span></a>
+                  </div>
+                </div>
+                
             </blockquote>
-            <button type="button" class="btn btn-brand btn-sm">GENERATE</button>
+            @if($resource["token"] == 'Please Generate New Token')
+            <form class="needs-validation" method="POST" action="{{ route('api.generate') }}" novalidate>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <button class="btn btn-brand btn-sm" type="submit">Generate</button>
+            </form>
+            @endif
+            
           </div>
         </div>
       </div>

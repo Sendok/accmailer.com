@@ -38,10 +38,12 @@ class ApiController extends Controller
                 return view('dashboard.pages.api',["active"=>"api","resource"=>$data]);
             } else {
                 $getQuota = $this->user->getQuota();
+                $getAPIToken = $this->user->getAPIToken();
                 $data = array(
                     "quota"=>$getQuota["quota"],
                     "type"=>$getQuota["type"],
-                    "user_plan_id"=>$getPlan->id
+                    "user_plan_id"=>$getPlan->id,
+                    "token"=>$getAPIToken,
                 );
                 return view('dashboard.pages.api',["active"=>"api","resource"=>$data]);
             }
@@ -49,6 +51,29 @@ class ApiController extends Controller
             
             
         }
+    }
+    public function generatApiToken(){
+        $getPlan = $this->user->getPlan();
+        $length = 50;
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $token = $randomString;
+        DB::update(
+            'update validate_token_api set status = "not-active" where user_plan_id = ?',
+            [$getPlan->id]
+        );
+        DB::table('validate_token_api')->insert([
+            'token' => $token,
+            'user_id' =>  $getPlan->user_id,
+            'user_plan_id' => $getPlan->id,
+            'status' => 'active'
+        ]);
+        return redirect()->route('api');
+
     }
  
 }

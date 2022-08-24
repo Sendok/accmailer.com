@@ -30,7 +30,7 @@
         <!-- Spinner -->
         <div class="spinner"></div>
           <!-- Loader -->
-          <div class="loader">
+          <!-- <div class="loader">
               <span data-text-preloader="A" class="animated-letters">A</span>
               <span data-text-preloader="C" class="animated-letters">C</span>
               <span data-text-preloader="C" class="animated-letters">C</span>
@@ -41,7 +41,7 @@
               <span data-text-preloader="E" class="animated-letters">E</span>
               <span data-text-preloader="R" class="animated-letters">R</span>
           </div>
-          <p class="fw-5 text-center text-uppercase">Loading</p>
+          <p class="fw-5 text-center text-uppercase">Loading</p> -->
       </div>
     </div>
     <div class="yaybar yay-hide-to-small yay-shrink yay-gestures rui-yaybar">
@@ -305,6 +305,29 @@
           });
         });
       }());
+      function copyText(element) {
+        var range, selection, worked;
+
+        if (document.body.createTextRange) {
+          range = document.body.createTextRange();
+          range.moveToElementText(element);
+          range.select();
+        } else if (window.getSelection) {
+          selection = window.getSelection();        
+          range = document.createRange();
+          range.selectNodeContents(element);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+        
+        try {
+          document.execCommand('copy');
+          alert('API key copied');
+        }
+        catch (err) {
+          alert('Unable to copy text');
+        }
+      }
     </script>
     <script src="./assets/js/rootui.js"></script>
     <script src="./assets/js/rootui-init.js"></script>

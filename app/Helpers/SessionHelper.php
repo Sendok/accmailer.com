@@ -82,4 +82,21 @@ class SessionHelper
             }
         }
     }
+    public function getAPIToken(){
+        $getPlan = $this->getPlan();
+        if($getPlan != null){
+            $user_plan_id = $getPlan->id;
+            $getToken= DB::select("SELECT token FROM validate_token_api where user_plan_id =".$user_plan_id." and status = 'active'");
+            if($getToken == false){
+                $token = 'Please Generate New Token';
+            } else {
+                $token = $getToken[0]->token;
+            }
+            
+            return $token;
+        } else {
+            
+            return $token;
+        }
+    }
 }
