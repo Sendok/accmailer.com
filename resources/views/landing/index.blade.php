@@ -414,7 +414,7 @@ if ($query && $query['status'] == 'success') {
                         <div class="content-inner text-center pt-sm-4 pt-lg-0 mt-sm-5 mt-lg-0">
                             <!-- Section Heading -->
                             <div class="section-heading text-center mb-3">
-                                <h2>Why EmailCleaner.com? not other.</h2>
+                                <h2>Why AccMailer.com? not other.</h2>
                             </div>
                             <!-- Content List -->
                             <ul class="content-list text-left">
@@ -652,7 +652,7 @@ if ($query && $query['status'] == 'success') {
                             <div class="footer-items">
                                 <!-- Footer Title -->
                                 <h3 class="footer-title text-uppercase mb-2">About Us</h3>
-                                <p class="mb-2">EmailCleaner.com is a Cleaning Service EMAIL that Reduces email bounce, improves email deliverability, and increases marketing ROI. Our single goal is to Create Emails more Clearly.</p>
+                                <p class="mb-2">AccMailer.com is a Cleaning Service EMAIL that Reduces email bounce, improves email deliverability, and increases marketing ROI. Our single goal is to Create Emails more Clearly.</p>
                                 <p class="mb-2">Tulungagung, East Java, Indonesia</p>
                                 <p class="mb-2">+6285791566727 (ID)</p>
                             </div>
@@ -708,9 +708,9 @@ if ($query && $query['status'] == 'success') {
                             <!-- Copyright Area -->
                             <div class="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
                                 <!-- Copyright Left -->
-                                <div class="copyright-left">&copy; Copyrights 2022 EmailCleaner All rights reserved.</div>
+                                <div class="copyright-left">&copy; Copyrights 2022 AccMailer.com All rights reserved.</div>
                                 <!-- Copyright Right -->
-                                <div class="copyright-right">Made with <i class="fas fa-heart"></i> By <a href="#">emailcleaner.com</a></div>
+                                <div class="copyright-right">Made with <i class="fas fa-heart"></i> By <a href="#">AccMailer.com</a></div>
                             </div>
                         </div>
                     </div>
