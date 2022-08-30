@@ -48,4 +48,56 @@ class BulkController extends Controller
             
         }
     }
+    public function validateBulk(Request $request){
+		$email = $request->input('email');
+		$ip = $request->input('ip');
+		$lat = $request->input('lat');
+		$lon = $request->input('lon');
+		$status  = "validate.next";
+        $getQuota = $this->user->getQuota();
+		$getPlan = $this->user->getPlan();
+        $quota = $getQuota["quota"];
+        if($quota == 0){
+			$status = "validate.max";
+			$data = array(
+				"quota"=>0
+			);
+            return redirect()->back()->with($status,$data);
+        } else {
+			$data = json_decode(main($request->input('email')), true);	
+			if($data["data"]["status"] == 'valid'){
+				$e_status = 1;
+			} else 
+			if($data["data"]["status"] == 'invalid'){
+				$e_status = 2;
+			} else {
+				$e_status = 3;
+			}	
+			$insert = DB::table('validate_email')->insert([
+				'email' => $data["data"]["email"],
+				'ip_address' => $ip,
+				'lat' => $lat,
+				'lon' => $lon,
+				'status_id' => $e_status,
+				'smtp_host' => $data["data"]["smtp"],
+				'domain' => $data["data"]["host"],
+				'mx_record' => $data["data"]["type"],
+				'ip_target' => $data["data"]["target"],
+				'ttl'=>$data["data"]["ttl"],
+				'validate_type' => 'bulk',
+				'user_id' => $getPlan->user_id,
+				'user_plan_id' => $getPlan->id
+			]);
+			$length = 20;
+			$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$charactersLength = strlen($characters);
+			$randomString = '';
+			for ($i = 0; $i < $length; $i++) {
+				$randomString .= $characters[rand(0, $charactersLength - 1)];
+			}
+			$data["data"]["id"] = $randomString.''.DB::getPdo()->lastInsertId();
+			$data = $data["data"];
+			return $data;
+		}
+    }
 }

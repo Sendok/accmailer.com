@@ -43,7 +43,6 @@ class SingleController extends Controller
         }
     }
     public function validateSingle(Request $request){
-        $date  =date("Y-m-d");
 		$email = $request->input('email');
 		$ip = $request->input('ip');
 		$lat = $request->input('lat');
@@ -78,6 +77,7 @@ class SingleController extends Controller
 				'domain' => $data["data"]["host"],
 				'mx_record' => $data["data"]["type"],
 				'ip_target' => $data["data"]["target"],
+				'ttl'=>$data["data"]["ttl"],
 				'validate_type' => 'single',
 				'user_id' => $getPlan->user_id,
 				'user_plan_id' => $getPlan->id

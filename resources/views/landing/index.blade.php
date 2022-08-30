@@ -708,7 +708,10 @@ if ($query && $query['status'] == 'success') {
                             <!-- Copyright Area -->
                             <div class="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
                                 <!-- Copyright Left -->
-                                <div class="copyright-left">&copy; Copyrights 2022 AccMailer.com All rights reserved.</div>
+                                <?php
+                                $year = date('Y');
+                                ?>
+                                <div class="copyright-left">&copy; Copyrights <?=$year?> AccMailer.com All rights reserved.</div>
                                 <!-- Copyright Right -->
                                 <div class="copyright-right">Made with <i class="fas fa-heart"></i> By <a href="#">AccMailer.com</a></div>
                             </div>

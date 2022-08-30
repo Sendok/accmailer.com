@@ -48,6 +48,7 @@ class GuestController extends Controller
 					'status_id' => $e_status,
 					'smtp_host' => $data["data"]["smtp"],
 					'domain' => $data["data"]["host"],
+					'ttl'=>$data["data"]["ttl"],
 					'mx_record' => $data["data"]["type"],
 					'ip_target' => $data["data"]["target"]
 				]);
@@ -73,6 +74,7 @@ class GuestController extends Controller
 				'status_id' => $e_status,
 				'smtp_host' => $data["data"]["smtp"],
 				'domain' => $data["data"]["host"],
+				'ttl'=>$data["data"]["ttl"],
 				'mx_record' => $data["data"]["type"],
 				'ip_target' => $data["data"]["target"]
 			]);
