@@ -31,7 +31,13 @@ class SingleController extends Controller
 		} else 
 		if($getPlan == null){
             return redirect()->route('plan');
-        } else {
+        } else 
+		if($getPlan->bulk_inuse == 1){
+			$data = array(
+				'bulk_inuse'=>true
+			);
+			return view('dashboard.pages.single',["active"=>"single","resource"=>$data]);
+		} else{
             $getQuota = $this->user->getQuota();
             $data = array(
                 "quota"=>$getQuota["quota"],

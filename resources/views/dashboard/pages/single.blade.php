@@ -41,8 +41,12 @@ if ($query && $query['status'] == 'success') {
             <div class="alert alert-brand" role="alert">
               You have payment process that yet completed, please complate to continue.
             </div>
+            @elseif(isset($resource["bulk_inuse"]))
+            <div class="alert alert-warning" role="alert">
+              You can't Use Single Verification when Bulk Verification is in process, please wait until its done.
+            </div>
             @else
-            <h5>This Day You Have {{ $resource["type"] }} Single Email Validation <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
+            <h5>This Day You Have {{ $resource["type"] }} Email Verification <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
 
             <form class="needs-validation" method="POST" action="{{ route('validateSingle.post') }}" novalidate>
                   <div class="row vertical-gap sm-gap">

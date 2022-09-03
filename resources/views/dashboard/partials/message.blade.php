@@ -137,3 +137,54 @@
     </div>
 </div>
 @endif
+
+@if(session("bulk.next"))
+<div class="col-lg-6 col-xl-7">
+<div class="card">
+    <div class="card-body">
+
+    <div class="d-flex align-items-center">
+        <h2 class="card-title mnb-6 mr-auto">Result total {{ session("validate.next")["total"] }}</h2><button class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" type="button"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span></button>
+    </div>
+    <ul class="list-group list-group-flush rui-profile-task-list">
+        <li class="list-group-item">
+        <div class="rui-task rui-task-success">
+            <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
+            <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS VALID</a><small class="rui-task-subtitle">30 EMAIL</small></div>
+        </div>
+        </li>
+        <li class="list-group-item">
+        <div class="rui-task rui-task-danger">
+            <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
+            <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS INVALID</a><small class="rui-task-subtitle">10 EMAIL</small></div>
+        </div>
+        </li>
+        <li class="list-group-item">
+        <div class="rui-task rui-task-warning">
+            <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
+            <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS DISPOSABLE</a><small class="rui-task-subtitle">20 EMAIL</small></div>
+        </div>
+        </li>
+        <li class="list-group-item">
+        <div class="rui-task rui-task-warning">
+            <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
+            <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS CHECK</a><small class="rui-task-subtitle">1 EMAIL</small></div>
+        </div>
+        </li>
+
+    </ul>
+    </div>
+</div>
+</div>
+@endif
+@if (session("bulk.max"))
+<div class="col-lg-6 col-xl-7">
+    <div class="card">
+        <div class="card-body">
+            <div class="alert alert-danger" role="alert">
+                You have reached the verification limit
+            </div>
+        </div>
+    </div>
+</div>
+@endif

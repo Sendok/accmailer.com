@@ -31,6 +31,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
+        
           <div class="alert alert-warning" role="alert">
           Free Plan cannot Access this Bulk Verification, Please upgrade your Plan.
           </div>
@@ -39,84 +40,50 @@
     </div>
     @else
     <div class="rui-profile row vertical-gap">
+     @if(isset($resource["bulk.next"]) || isset($resource["bulk.max"]))
      <div class="col-lg-6 col-xl-5">
+     @else
+     <div class="col-lg-12">
+     @endif
         <div class="card">
+        
           <div class="card-body">
-            <h5>This Day You Have Free Single Email Validation <span class="badge badge-pill badge-success">1000 Validation</span></h5>
-
-            <form class="rui-dropzone dropzone" action="#" data-dz-max-mb="0.5" data-dz-max-files="2" data-dz-remove-link="true">
-                <input type="file" name="file" class="rui-dropzone-input">
-                <!-- Your File-image -->
-                <div class="rui-dropzone-images">
-                    <img src="./assets/images/icon-rar.svg" alt="" data-dz-type="rar">
-                    <img src="./assets/images/icon-zip.svg" alt="" data-dz-type="zip">
-                    <img src="./assets/images/icon-html.svg" alt="" data-dz-type="html">
-                    <img src="./assets/images/icon-php.svg" alt="" data-dz-type="php">
-                    <img src="./assets/images/icon-css.svg" alt="" data-dz-type="css">
-                    <img src="./assets/images/icon-js.svg" alt="" data-dz-type="js">
-                    <img src="./assets/images/icon-doc.svg" alt="" data-dz-type="doc">
-                    <img src="./assets/images/icon-txt.svg" alt="" data-dz-type="txt">
-                    <img src="./assets/images/icon-pdf.svg" alt="" data-dz-type="pdf">
-                    <img src="./assets/images/icon-xls.svg" alt="" data-dz-type="xls">
-                    <img src="./assets/images/icon-empty.svg" alt="" data-dz-type="empty">
-                </div>
-                <!-- Your Remove-icon -->
-                <span data-feather="x" class="rui-icon rui-icon-stroke-1_5 rui-dropzone-remove-icon"></span>
-
-                <div class="dz-message">
-                    <span class="rui-dropzone-icon">
-                        <span data-feather="upload-cloud" class="rui-icon rui-icon-stroke-0_5"></span>
-                    </span>
-                    <span class="rui-dropzone-text">
-                        Drop files here or click to upload.
-                    </span>
-                </div>
-                <div class="col-12">
-                    <button class="btn btn-brand" type="submit">Validate</button>
-                </div>
-            </form>
+          <h5>This Day You Have {{ $resource["type"] }} Email Verification <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
+          
+            <div class="form-group required" enctype="multipart/form-data">
+                <input id="import_file" type="file" class="form-control" name="import_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+              </div>
+              <div class="col-12">
+                  <button id="btn-bulk" class="btn btn-brand" type="submit">Validate</button>
+              </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-xl-7">
-        <div class="card">
-          <div class="card-body">
-
-            <div class="d-flex align-items-center">
-              <h2 class="card-title mnb-6 mr-auto">Result</h2><button class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" type="button"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span></button>
-            </div>
-            <ul class="list-group list-group-flush rui-profile-task-list">
-              <li class="list-group-item">
-                <div class="rui-task rui-task-danger">
-                  <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                  <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS VALID</a><small class="rui-task-subtitle">30 EMAIL</small></div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="rui-task rui-task-success">
-                  <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                  <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS INVALID</a><small class="rui-task-subtitle">10 EMAIL</small></div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="rui-task rui-task-success">
-                  <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                  <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS DISPOSABLE</a><small class="rui-task-subtitle">20 EMAIL</small></div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="rui-task rui-task-success">
-                  <div class="rui-task-icon"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span></div>
-                  <div class="rui-task-content"><a class="rui-task-title" href="task.html">STATUS CHECK</a><small class="rui-task-subtitle">1 EMAIL</small></div>
-                </div>
-              </li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-      </div>
-      @endif
+      @include('dashboard.partials.message')
     </div>
+    @endif
+  </div>
 </div>
 @endsection
+<!-- Modal -->
+<div class="modal fade" id="bulkModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+            <div id="loader-bulk" class="lenovo-loader">
+              <div class="loader">
+                <div style="width: 100%;">
+                    <p class="small hint-text"><span id="loader-text" >-</span><span class="pull-right"><span id="loader-progress">0</span>%</span></p>
+                  <div class="progress">
+                    <div id="loader-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-brand" style="width:0%"></div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            </div>
+        </div>
+    </div>
+</div>

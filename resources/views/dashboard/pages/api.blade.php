@@ -42,7 +42,7 @@
      <div class="col-12">
         <div class="card">
           <div class="card-body">
-          <h5>This Day You Have {{ $resource["type"] }} API Email Validation <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
+          <h5>This Day You Have {{ $resource["type"] }} Email Verification <span class="badge badge-pill badge-success">{{ $resource["quota"] }} Validation</span></h5>
           <p><em>Generate API KEY to use API Verification.</em></p>
             <blockquote class="blockquote">
                 <div class="row">

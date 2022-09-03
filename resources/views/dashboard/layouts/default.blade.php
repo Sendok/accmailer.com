@@ -23,25 +23,26 @@
     <link rel="stylesheet" href="./assets/css/rootui.css">
     <link rel="stylesheet" href="./assets/css/rootui-night.css" media="(night)" class="rui-nightmode-link">
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <style type="text/css">
+      .bulk-loader{
+        height: 100%;
+        z-index: 0;
+        width: 100%;
+        position: absolute;
+        background-color: rgba(255,255,255,0.8);
+        top: 0;
+        left: 0;
+      }
+      
+
+    </style>
   </head>
   <body data-spy="scroll" data-target=".rui-page-sidebar" data-offset="140" class="rui-no-transition rui-navbar-autohide rui-section-lines">
-    <div class="rui-page-preloader" role="status">
+ 
+  <div class="rui-page-preloader" role="status">
       <div class="rui-page-preloader-inner">
         <!-- Spinner -->
         <div class="spinner"></div>
-          <!-- Loader -->
-          <!-- <div class="loader">
-              <span data-text-preloader="A" class="animated-letters">A</span>
-              <span data-text-preloader="C" class="animated-letters">C</span>
-              <span data-text-preloader="C" class="animated-letters">C</span>
-              <span data-text-preloader="M" class="animated-letters">M</span>
-              <span data-text-preloader="A" class="animated-letters">A</span>
-              <span data-text-preloader="I" class="animated-letters">I</span>
-              <span data-text-preloader="L" class="animated-letters">L</span>
-              <span data-text-preloader="E" class="animated-letters">E</span>
-              <span data-text-preloader="R" class="animated-letters">R</span>
-          </div>
-          <p class="fw-5 text-center text-uppercase">Loading</p> -->
       </div>
     </div>
     <div class="yaybar yay-hide-to-small yay-shrink yay-gestures rui-yaybar">
@@ -76,234 +77,101 @@
     <script src="./assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
     <script src="./assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="./assets/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+    <script src="./assets/xlsx/xlsx.full.min.js"></script>
     <script class="rui-page-additional-js">
       (function() {
-        // Vector Map
-        const data = {
-          va: 6278, // Virginia
-          pa: 2110, // Pennsylvania
-          tn: 2917, // Tennessee
-          wv: 1721, // West Virginia
-          nv: 900, // Nevada
-          tx: 13263, // Texas
-          nh: 2917, // New Hampshire
-          ny: 19220, // New York
-          hi: 2726, // Hawaii
-          vt: 1927, // Vermont
-          nm: 8650, // New Mexico
-          nc: 1720, // North Carolina
-          nd: 6780, // North Dakota
-          ne: 2980, // Nebraska
-          la: 9271, // Louisiana
-          sd: 2712, // South Dakota
-          dc: 8360, // District of Columbia
-          de: 2900, // Delaware
-          fl: 9162, // Florida
-          ct: 6281, // Connecticut
-          wa: 8261, // Washington
-          ks: 1611, // Kansas
-          wi: 2751, // Wisconsin
-          or: 2860, // Oregon
-          ky: 9960, // Kentucky
-          me: 2710, // Maine
-          oh: 8361, // Ohio
-          ok: 3816, // Oklahoma
-          id: 13251, // Idaho
-          wy: 2871, // Wyoming
-          ut: 3812, // Utah
-          in : 10721, // Indiana
-          il: 3816, // Illinois
-          ak: 3810, // Alaska
-          nj: 8920, // New Jersey
-          co: 7350, // Colorado
-          md: 1923, // Maryland
-          ma: 4816, // Massachusetts
-          al: 2710, // Alabama
-          mo: 3150, // Missouri
-          mn: 1863, // Minnesota
-          ca: 9372, // California
-          ia: 3726, // Iowa
-          mi: 790, // Michigan
-          ga: 2860, // Georgia
-          az: 8610, // Arizona
-          mt: 8785, // Montana
-          ms: 3710, // Mississippi
-          sc: 7739, // South Carolina
-          ri: 1753, // Rhode Island
-          ar: 7720, // Arkansas
-        };
-        $('.rui-jqvmap').vectorMap({
-          map: 'usa_en',
-          backgroundColor: '#f8f9fa',
-          borderColor: '#a4a6a8',
-          borderOpacity: 1,
-          borderWidth: 0.1,
-          color: '#b6b8b9',
-          hoverColor: '#4b515b',
-          selectedColor: '#393f49',
-          showTooltip: true,
-          scaleColors: ['#d3d6da', '#8a8f9c'],
-          normalizeFunction: 'polynomial',
-          values: data,
-          onLabelShow: function(event, label, code) {
-            if (data[code] === undefined) {
-              label.html(`${label.html()} - $0`);
-            } else {
-              label.html(`${label.html()} - $${data[code]}`);
-            }
-          },
-        });
-        // Chart
-        $('.rui-chartjs').each(function() {
-          const $this = $(this);
-          const ctx = $this[0].getContext('2d');
-          $this.attr('height', parseInt($this.attr('data-height'), 10));
-          // Line Realtime
-          if ($this.hasClass('rui-chartjs-line')) {
-            const dataInterval = parseInt($this.attr('data-chartjs-interval'), 10);
-            const dataBorderColor = $this.attr('data-chartjs-line-color');
-            const conf = {};
-            const gradient = ctx.createLinearGradient(0, 0, 0, 90);
-            gradient.addColorStop(0, Chart.helpers.color(dataBorderColor).alpha(0.1).rgbString());
-            gradient.addColorStop(1, Chart.helpers.color(dataBorderColor).alpha(0).rgbString());
-            const rand = () => Array.from({
-              length: 40
-            }, () => Math.floor(Math.random() * (100 - 40) + 40));
+       
 
-            function addData(chart, data) {
-              chart.data.datasets.forEach((dataset) => {
-                let data = dataset.data;
-                const first = data.shift();
-                data.push(first);
-                dataset.data = data;
-              });
-              chart.update();
+        $("#btn-bulk").click(readExcel);
+        function changeLoader(text, percent){
+          $("#loader-text").html(text);
+          $("#loader-progress").html(percent);
+          $("#loader-bar").css("width", percent+"%");
+          if(percent == 0){
+            $("#loader-bulk").show();
+          }else if(percent == 100){
+            $("#loader-bulk").hide();
+            $("#loader-bar").css("width", "0%");
+          }
+        }
+
+        var rABS = true;
+        var fileTypes = ['xls', 'xlsx'];
+
+        function readExcel() {
+          if ( ! window.FileReader ) {
+            return $("#bulkModalErrorFile").modal();
+            return alert( 'FileReader API is not supported by your browser.' );
+          }
+          
+          var $i = $("#import_file"),
+          input = $i[0];
+          
+
+          
+          if (input.files && input.files[0]) {
+            var extension = input.files[0].name.split('.').pop().toLowerCase(),  //file extension from input file
+            isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types
+            
+            if (!isSuccess){
+              return alert( 'File tidak tidak digunakan, silahkan menggunakan template yang telah disediakan.' );
+            }else{
+              $("#bulkModal").modal();
+              changeLoader("Starting Email", 99);
+              var file = input.files[0]; // The file
+              var reader = new FileReader(); // FileReader instance
+              reader.onload = function () {
+                var data = reader.result;
+                
+                if(!rABS) data = new Uint8Array(data);
+                var wb = XLSX.read(data, {type: rABS ? 'binary' : 'array'});
+                var resource = XLSX.utils.sheet_to_json(wb.Sheets.Sheet1, {header:["email"]});
+                var count = resource.length-1;
+                resource.splice(0,1);
+                console.log(count)
+                // changeLoader("Input "+count+" Email", 15);
+                sendDataJson(resource);
+              };
+              if(rABS) reader.readAsBinaryString(file); else reader.readAsArrayBuffer(file);
             }
-            conf.type = 'line';
-            conf.data = {
-              labels: rand(),
-              datasets: [{
-                backgroundColor: gradient,
-                borderColor: dataBorderColor,
-                borderWidth: 2,
-                pointHitRadius: 5,
-                pointBorderWidth: 0,
-                pointBackgroundColor: 'transparent',
-                pointBorderColor: 'transparent',
-                pointHoverBorderWidth: 0,
-                pointHoverBackgroundColor: dataBorderColor,
-                data: rand(),
-              }],
-            };
-            conf.options = {
-              tooltips: {
-                mode: 'index',
-                intersect: false,
-                backgroundColor: '#393f49',
-                bodyFontSize: 11,
-                bodyFontColor: '#d7d9e0',
-                bodyFontFamily: '"Open Sans", sans-serif',
-                xPadding: 10,
-                yPadding: 10,
-                displayColors: false,
-                caretPadding: 5,
-                cornerRadius: 4,
-                callbacks: {
-                  title: () => {
-                    return;
-                  },
-                  label: (t) => {
-                    if ($this.hasClass('rui-chartjs-memory')) {
-                      return [`In use ${t.value}%`, `${t.value * 100} MB`];
-                    }
-                    if ($this.hasClass('rui-chartjs-disc')) {
-                      return [`Read ${Math.round((t.value / 80) * 100) / 100} MB/s`, `Write ${Math.round((t.value / 90) * 100) / 100} MB/s`];
-                    }
-                    if ($this.hasClass('rui-chartjs-cpu')) {
-                      return [`Utilization ${t.value}%`, `Processes ${parseInt((t.value / 10), 10)}`];
-                    }
-                    if ($this.hasClass('rui-chartjs-total')) {
-                      return `$${t.value}`;
-                    }
-                  }
-                },
+          } else {
+            $("#bulkModalErrorBrowser").modal();
+            alert("File not selected or browser incompatible.")
+          }
+        }
+        var rABS = true;
+        var fileTypes = ['xls', 'xlsx'];
+
+
+        function sendDataJson(vData){
+          var len = 100;
+          var ar_len = Math.ceil(vData.length/len);
+          var count = 0;
+          for (var i = 0; i < ar_len ; i++) {
+            var start = i * len;
+            var end = (i + 1) * len;
+            var newData = vData.slice(start, end);
+            console.log(JSON.stringify(newData));
+            $.ajax({
+              url: "scripts/request.php",
+              data:{
+                vData : newData
               },
-              legend: {
-                display: false,
-              },
-              maintainAspectRatio: true,
-              spanGaps: false,
-              plugins: {
-                filler: {
-                  propagate: false,
-                },
-              },
-              scales: {
-                xAxes: [{
-                  display: false
-                }],
-                yAxes: [{
-                  display: false,
-                  ticks: {
-                    beginAtZero: true,
-                  },
-                }],
-              },
-            };
-            const myChart = new Chart(ctx, conf);
-            setInterval(() => addData(myChart), dataInterval);
-          }
-        });
-        // Doughnut
-        $('.rui-chartist').each(function() {
-          const $this = $(this);
-          let dataSeries = $this.attr('data-chartist-series');
-          const dataWidth = $this.attr('data-width');
-          const dataHeight = $this.attr('data-height');
-          const dataGradient = $this.attr('data-chartist-gradient');
-          const dataBorderWidth = parseInt($this.attr('data-chartist-width'), 10);
-          const data = {};
-          const conf = {};
-          // Data
-          if (dataSeries) {
-            dataSeries = dataSeries.split(',');
-            let dataSeriesNum = [];
-            for (i = 0; i < dataSeries.length; i++) {
-              dataSeriesNum.push(parseInt(dataSeries[i], 10));
-            }
-            data.series = dataSeriesNum;
-          }
-          // Conf
-          conf.donut = true;
-          conf.showLabel = false;
-          if (dataBorderWidth) {
-            conf.donutWidth = dataBorderWidth;
-          }
-          if (dataWidth) {
-            conf.width = dataWidth;
-          }
-          if (dataHeight) {
-            conf.height = dataHeight;
-          }
-          const chart = new Chartist.Pie($this[0], data, conf);
-          // Create gradient
-          chart.on('created', function(ctx) {
-            const defs = ctx.svg.elem('defs');
-            defs.elem('linearGradient', {
-              id: 'gradient',
-              x1: 0,
-              y1: 1,
-              x2: 0,
-              y2: 0
-            }).elem('stop', {
-              offset: 0,
-              'stop-color': dataGradient.split(';')[0]
-            }).parent().elem('stop', {
-              offset: 1,
-              'stop-color': dataGradient.split(';')[1]
+              type: "POST",
+              success: function(result){
+                console.log(result);
+                count += 100;
+                percent = Math.ceil((count/vData.length) * 90) + 10;
+                if(count >= vData.length){
+                  // finishing();
+                }else{
+                  changeLoader("Validasi serial number "+count+"/"+vData.length, percent);
+                }
+              }
             });
-          });
-        });
+          }
+        }
+
       }());
       function copyText(element) {
         var range, selection, worked;

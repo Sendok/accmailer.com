@@ -35,7 +35,9 @@
     <br/>
     <span class="far fa-file-excel"></span>
     <div class="d-flex align-items-center">
+            @if(isset($resource[0]->user_id))
             <h2 class="card-title mnb-6 mr-auto"></h2><a href="{{ route('reportExport.get', ['slug' => $resource[0]->user_id ]) }}" class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span>DOWNLOAD REPORT</a>
+            @endif
     </div>
   
     <br/>
