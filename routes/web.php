@@ -40,6 +40,8 @@ Route::middleware([
     Route::get('payment/cancel', [PaymentController::class, 'paymentPaypalCancel'])->name('payment.cancel');
     Route::get('payment/success', [PaymentController::class, 'paymentPaypalSuccess'])->name('payment.success');
     Route::get('bulk', [BulkController::class, 'index'])->name('bulk');
+    Route::post('bulk/check', [BulkController::class, 'validateCountBulk'])->name('bulk.check');
+    Route::post('bulk/verification', [BulkController::class, 'validateBulk'])->name('bulk.verification');
     Route::get('api', [ApiController::class, 'index'])->name('api');
     Route::post('api', [ApiController::class, 'generatApiToken'])->name('api.generate');
     Route::get('report', [ReportController::class, 'index'])->name('report');

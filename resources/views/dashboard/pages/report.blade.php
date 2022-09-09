@@ -68,10 +68,10 @@
                     DOMAIN
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
-                <th scope="col">
+                <!-- <th scope="col">
                     MX RECORD
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
-                </th>
+                </th> -->
                 <th scope="col">
                     IP TARGET
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
@@ -100,7 +100,7 @@
                 <td>{{ $data->validate_type }}</td>
                 <td>{{ $data->smtp_host }}</td>
                 <td>{{ $data->domain }}</td>
-                <td>{{ $data->mx_record }}</td>
+                <!-- <td>{{ $data->mx_record }}</td> -->
                 <td>{{ $data->ip_target }}</td>
             </tr>
           <?php

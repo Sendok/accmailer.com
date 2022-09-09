@@ -90,8 +90,9 @@
           if(percent == 0){
             $("#loader-bulk").show();
           }else if(percent == 100){
+            $("#loader-bar").css("width", "100%");
             $("#loader-bulk").hide();
-            $("#loader-bar").css("width", "0%");
+            
           }
         }
 
@@ -107,7 +108,12 @@
           var $i = $("#import_file"),
           input = $i[0];
           
-
+          var token = document.getElementById('csrf').value;
+          $.ajaxSetup({
+              beforeSend: function(xhr) {
+                  xhr.setRequestHeader('X-CSRF-Token', token);
+              }
+          });
           
           if (input.files && input.files[0]) {
             var extension = input.files[0].name.split('.').pop().toLowerCase(),  //file extension from input file
@@ -116,8 +122,7 @@
             if (!isSuccess){
               return alert( 'File tidak tidak digunakan, silahkan menggunakan template yang telah disediakan.' );
             }else{
-              $("#bulkModal").modal();
-              changeLoader("Starting Email", 99);
+              
               var file = input.files[0]; // The file
               var reader = new FileReader(); // FileReader instance
               reader.onload = function () {
@@ -129,8 +134,8 @@
                 var count = resource.length-1;
                 resource.splice(0,1);
                 console.log(count)
-                // changeLoader("Input "+count+" Email", 15);
-                sendDataJson(resource);
+                changeLoader("Input "+count+" Email For Verification ", 10);
+                sendDataCount(count,resource);
               };
               if(rABS) reader.readAsBinaryString(file); else reader.readAsArrayBuffer(file);
             }
@@ -141,31 +146,49 @@
         }
         var rABS = true;
         var fileTypes = ['xls', 'xlsx'];
-
-
-        function sendDataJson(vData){
-          var len = 100;
-          var ar_len = Math.ceil(vData.length/len);
-          var count = 0;
-          for (var i = 0; i < ar_len ; i++) {
-            var start = i * len;
-            var end = (i + 1) * len;
-            var newData = vData.slice(start, end);
-            console.log(JSON.stringify(newData));
-            $.ajax({
-              url: "scripts/request.php",
+    
+        function sendDataCount(vCount,resource){
+          
+          $.ajax({
+              url: "/bulk/check",
               data:{
-                vData : newData
+                count : vCount
+              },
+              type: "POST",
+              success: function(result){
+                console.log(result.message);
+                if(result.message === 'next'){
+                    // $("#bulkModal").modal();
+                    $('#bulkModal').modal('show');
+                    sendDataJson(vCount,resource,result.code);
+                } else {
+                  alert("Reach max limit")
+                }
+              }
+              
+            });
+        }
+        function sendDataJson(vCount,resource,code){
+          resource.forEach(sendData);
+          function sendData (item, index, arr) {
+            console.log(item.email);
+            $.ajax({
+              url: "/bulk/verification",
+              data: {
+                email : item.email,
+                code : code
               },
               type: "POST",
               success: function(result){
                 console.log(result);
-                count += 100;
-                percent = Math.ceil((count/vData.length) * 90) + 10;
-                if(count >= vData.length){
-                  // finishing();
+                var count = index + 1;
+                percent = Math.ceil((count/vCount) * 90) + 10;
+                if(count >= vCount){
+                  $('#bulkModal').modal('hide');
+                  changeLoader("Email Verification "+count+"/"+vCount+" ", percent);
                 }else{
-                  changeLoader("Validasi serial number "+count+"/"+vData.length, percent);
+                  console.log();
+                  changeLoader("Email Verification "+count+"/"+vCount+" ", percent);
                 }
               }
             });
