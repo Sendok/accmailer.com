@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\SessionHelper;
 use Response;
+use App\Exports\BulkExport;
+use Maatwebsite\Excel\Facades\Excel;
 include(app_path().'/Http/Controllers/mainValidate.php');
 
 class BulkController extends Controller
@@ -54,7 +56,6 @@ class BulkController extends Controller
 		
 		$email = $request->email;
 		$code = $request->code;
-		// die(var_dump($email,$code));
         $getQuota = $this->user->getQuota();
 		$getPlan = $this->user->getPlan();
 		DB::update(
@@ -85,7 +86,7 @@ class BulkController extends Controller
 				'ip_target' => $data["data"]["target"],
 				'ttl'=>$data["data"]["ttl"],
 				'validate_type' => 'bulk',
-				'bulk_report_code'=>$code,
+				'validate_bulk_code_id'=>$code,
 				'user_id' => $getPlan->user_id,
 				'user_plan_id' => $getPlan->id
 			]);
@@ -114,17 +115,28 @@ class BulkController extends Controller
 			$response = array(
 				"message"=>"next"
 			);
+			$length = 8;
+			$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$charactersLength = strlen($characters);
+			$randomString = '';
+			for ($i = 0; $i < $length; $i++) {
+				$randomString .= $characters[rand(0, $charactersLength - 1)];
+			}
+			$code = $randomString;
+			$insert = DB::table('validate_bulk_code')->insert([
+				'code' => $randomString,
+				'user_plan_id' => $getPlan->id
+			]);
+			$insert_id = DB::getPdo()->lastInsertId();
+			$response["code"] = $insert_id;
+			$response["re_code"] = $randomString;
 		}
-		$length = 8;
-		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		$code = $randomString;
-		$response["code"] = $code;
+
 		
 		return $response;
 	}
+	public function BulkExport($slug){
+		return Excel::download(new BulkExport($slug), 'BulkVerification#ACC'.$slug.'.xlsx');
+	}
+
 }

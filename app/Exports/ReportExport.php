@@ -22,7 +22,7 @@ class ReportExport implements FromCollection,WithHeadings
     public function collection()
     {
         $request = $this->request;
-        return report_export::where('user_id', $request)->get(["email","status","validate_type","smtp_host","domain","mx_record","ip_target","created_at"]);
+        return report_export::where('user_id', $request)->get(["email","status","validate_type","smtp_host","domain","ip_target","created_at"]);
     }
     public function headings(): array
     {
@@ -32,7 +32,6 @@ class ReportExport implements FromCollection,WithHeadings
             'VERIFICATION TYPE',
             'SMTP HOST',
             'DOMAIN',
-            'MX RECORD',
             'IP TARGET',
             'VERIFICATION DATE'
         ];

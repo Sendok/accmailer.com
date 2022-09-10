@@ -31,8 +31,10 @@ class PlanController extends Controller
             return view('dashboard.pages.plan',["active"=>"plan"]);
         } else {
             $plan_id = $getPlan->plan_id;
+            $getQuota = $this->user->getQuota();
             $data = array(
-                "plan_id"=>$plan_id
+                "plan_id"=>$plan_id,
+                "quota"=>$getQuota["quota"]
             );
             return view('dashboard.pages.plan',["active"=>"plan","resource"=>$data]);
             

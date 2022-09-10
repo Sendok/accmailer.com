@@ -87,8 +87,10 @@
                     <p><span data-feather="check" class="rui-icon rui-icon-stroke-1_5"></span><span>API Verification</span></p>
                     <!-- Plan Button -->
                     <div class="plan-button">
-                        @if(isset($resource["plan_id"]) && $resource["plan_id"] == 2)
+                        @if(isset($resource["plan_id"]) && $resource["plan_id"] == 2 && $resource["quota"] > 0)
                         <button type="button" class="btn btn-outline-success btn-block justify-content-center" disabled>Your Current Plan</button>
+                        @elseif(isset($resource["plan_id"]) && $resource["plan_id"] == 2 && $resource["quota"] == 0)
+                        <a href="{{ route('checkout.detail', ['slug' => 2]) }}" class="btn btn-outline-success btn-block justify-content-center">Continue Plan</a>
                         @else
                         <a href="{{ route('checkout.detail', ['slug' => 2]) }}" class="btn btn-outline-success btn-block justify-content-center">Checkout</a>
                         @endif

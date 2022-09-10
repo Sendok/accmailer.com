@@ -80,8 +80,9 @@
     <script src="./assets/xlsx/xlsx.full.min.js"></script>
     <script class="rui-page-additional-js">
       (function() {
-       
-
+        $("#result-bulk").hide();
+        $("#bulk-download").hide();
+        
         $("#btn-bulk").click(readExcel);
         function changeLoader(text, percent){
           $("#loader-text").html(text);
@@ -141,7 +142,6 @@
             }
           } else {
             $("#bulkModalErrorBrowser").modal();
-            alert("File not selected or browser incompatible.")
           }
         }
         var rABS = true;
@@ -158,20 +158,24 @@
               success: function(result){
                 console.log(result.message);
                 if(result.message === 'next'){
-                    // $("#bulkModal").modal();
                     $('#bulkModal').modal('show');
-                    sendDataJson(vCount,resource,result.code);
+                    $("#id-text").html(result.re_code);
+                    sendDataJson(vCount,resource,result.code,result.re_code);
+
                 } else {
-                  alert("Reach max limit")
+                  $("#bulkModalReachLimit").modal();
                 }
               }
               
             });
         }
-        function sendDataJson(vCount,resource,code){
+        function sendDataJson(vCount,resource,code, re_code){
+          var valid = 0;
+          var invalid = 0;
+          var disposable = 0;
+          var checkall = 0;
           resource.forEach(sendData);
           function sendData (item, index, arr) {
-            console.log(item.email);
             $.ajax({
               url: "/bulk/verification",
               data: {
@@ -180,19 +184,37 @@
               },
               type: "POST",
               success: function(result){
-                console.log(result);
                 var count = index + 1;
+                if(result.status === 'valid'){
+                  valid = valid +1;
+                } else
+                if(result.status === 'invalid'){
+                  invalid = invalid +1;
+                } else
+                if(result.status === 'disposable'){
+                  disposable = disposable +1;
+                } else {
+                  checkall = checkall +1;
+                }
                 percent = Math.ceil((count/vCount) * 90) + 10;
                 if(count >= vCount){
-                  $('#bulkModal').modal('hide');
                   changeLoader("Email Verification "+count+"/"+vCount+" ", percent);
+                  $('#result-bulk').show();
+                  $("#bulk-download").show();
+                  $("#valid-text").html(valid);
+                  $("#invalid-text").html(invalid);
+                  $("#disposable-text").html(disposable);
+                  $("#checkall-text").html(checkall);
+                  var link = "bulk/export/" + re_code;
+                  document.getElementById("link-export").setAttribute("href",link);
                 }else{
-                  console.log();
                   changeLoader("Email Verification "+count+"/"+vCount+" ", percent);
                 }
               }
             });
           }
+          
+
         }
 
       }());
