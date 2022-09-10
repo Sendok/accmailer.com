@@ -82,6 +82,7 @@
       (function() {
         $("#result-bulk").hide();
         $("#bulk-download").hide();
+        $("#close").hide();
         
         $("#btn-bulk").click(readExcel);
         function changeLoader(text, percent){
@@ -199,6 +200,7 @@
                 percent = Math.ceil((count/vCount) * 90) + 10;
                 if(count >= vCount){
                   changeLoader("Email Verification "+count+"/"+vCount+" ", percent);
+                  $('#close').show();
                   $('#result-bulk').show();
                   $("#bulk-download").show();
                   $("#valid-text").html(valid);

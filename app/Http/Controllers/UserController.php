@@ -19,6 +19,10 @@ class UserController extends Controller
     public function Logout(){
         $getUser = $this->user->getUser();
         $user_id = $getUser->id;
+        DB::update(
+            'update users set remember_token = null where id = ?',
+            [$user_id]
+        );
         $flight = Session::where('user_id', $user_id);
         $flight->delete();
         return redirect()->route('login');

@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Bulk Verification #ACC<span id="id-text" >0</span></h5>
                 <div id="bulk-download">
-                  <a id='link-export' class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span>DOWNLOAD REPORT</a>
+                  <a id='link-export' class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" ><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span>DOWNLOAD REPORT</a>
                 </div>
             </div>
             <div class="modal-body">
@@ -54,6 +54,9 @@
             </div>
             </div>
             </div>
+            </div>
+            <div id="close" class="modal-footer">
+                <button type="button" class="btn btn-brand" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

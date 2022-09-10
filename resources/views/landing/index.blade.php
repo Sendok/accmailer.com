@@ -183,7 +183,7 @@ if ($query && $query['status'] == 'success') {
                     <div class="col-12 col-md-7">
                         <div class="welcome-intro">
                             <h3 class="text-white ">Accurate. Anti Fraud. Easy to Use </h3>
-                            <h1 class="text-white">Email Verification Service</h1>
+                            <h1 class="text-white">Email Verification Services</h1>
                             <p class="text-white my-4">Reduce email bounce, improve email deliverability and increase marketing ROI. Lets try Validating your Email:</p>
                             <div class="contact-box text-center">
                                 <!-- Contact Form -->
