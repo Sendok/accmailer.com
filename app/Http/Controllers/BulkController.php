@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Helpers\SessionHelper;
 use Response;
 use App\Exports\BulkExport;
+use App\Exports\BulkFileExport;
 use Maatwebsite\Excel\Facades\Excel;
 include(app_path().'/Http/Controllers/mainValidate.php');
 
@@ -42,12 +43,20 @@ class BulkController extends Controller
                 return view('dashboard.pages.bulk',["active"=>"bulk","resource"=>$data]);
             } else {
                 $getQuota = $this->user->getQuota();
+				$getUser = $this->user->getUser();
+				$user_id = $getUser->id;
+				$report = DB::select("SELECT * FROM bulk_reports where month(created_at) = month(curdate()) and year(created_at) = year(curdate()) and user_id =".$user_id." ");
+				if($report == false){
+					$report =[];
+				} else {
+					$report = $report;
+				}
                 $data = array(
                     "quota"=>$getQuota["quota"],
                     "type"=>$getQuota["type"],
                     "user_plan_id"=>$getPlan->id
                 );
-                return view('dashboard.pages.bulk',["active"=>"bulk","resource"=>$data]);
+                return view('dashboard.pages.bulk',["active"=>"bulk","resource"=>$data,"report"=>$report]);
             }
             
         }
@@ -137,6 +146,9 @@ class BulkController extends Controller
 	}
 	public function BulkExport($slug){
 		return Excel::download(new BulkExport($slug), 'BulkVerification#ACC'.$slug.'.xlsx');
+	}
+	public function BulkFileExport($slug){
+	 return Excel::download(new BulkFileExport($slug),'BulkVerification$ACC'.$slug.'.xlsx');
 	}
 
 }

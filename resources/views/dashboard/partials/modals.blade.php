@@ -56,7 +56,7 @@
             </div>
             </div>
             <div id="close" class="modal-footer">
-                <button type="button" class="btn btn-brand" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-brand" data-dismiss="modal" onClick="window.location.href=window.location.href">Close</button>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                 <p>File not selected, Please select file to continue Bulk Verification.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-brand" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-brand" data-dismiss="modal" >Close</button>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Bulk Verification Warning!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="window.location.href=window.location.href">
                     <span data-feather="x" class="rui-icon rui-icon-stroke-1_5"></span>
                 </button>
             </div>
@@ -94,7 +94,7 @@
                 <p>You Reach limit for Verification please upgrade plan or continue plan on Menu Plan.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-brand" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-brand" data-dismiss="modal" onClick="window.location.href=window.location.href">Close</button>
             </div>
         </div>
     </div>

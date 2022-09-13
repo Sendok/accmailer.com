@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="api">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('single') }}">Home</a></li>
       </ol>
     </nav>
     <h1>API Email Verification</h1>

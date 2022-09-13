@@ -11,7 +11,7 @@
       <li class="@if(isset($active) && $active == 'report')  yay-item-active @endif"><a href="{{ route('report') }}"><span class="yay-icon"><span data-feather="archive" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Report</span><span class="rui-yaybar-circle"></span></a></li>
       <li class="yay-label">Billing</li>
       <li class="@if(isset($active) && $active == 'plan')  yay-item-active @endif"><a href="{{ route('plan') }}"><span class="yay-icon"><span data-feather="pocket" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Plan</span><span class="rui-yaybar-circle"></span></a></li>
-      <li class="@if(isset($active) && $active == 'billing')  yay-item-active @endif"><a href="billing_report"><span class="yay-icon"><span data-feather="archive" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Billing Report</span><span class="rui-yaybar-circle"></span></a></li>
+      <li class="@if(isset($active) && $active == 'billing')  yay-item-active @endif"><a href="{{ route('billing') }}"><span class="yay-icon"><span data-feather="archive" class="rui-icon rui-icon-stroke-1_5"></span></span><span>Billing</span><span class="rui-yaybar-circle"></span></a></li>
     </ul>
   </div>
 </div>

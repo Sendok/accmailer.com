@@ -29,7 +29,7 @@
                
                 <li><a href="{{ route('profile.show') }}" class="nav-link"><span data-feather="users" class="rui-icon rui-icon-stroke-1_5"></span><span>Profile</span><span class="rui-nav-circle"></span></a></li>
                 <li><a href="{{ route('plan') }}" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Plan</span><span class="rui-nav-circle"></span></a></li>
-                <li><a href="profile.html" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Billing Report</span><span class="rui-nav-circle"></span></a></li>
+                <li><a href="{{ route('billing') }}" class="nav-link"><span data-feather="check-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Billing Report</span><span class="rui-nav-circle"></span></a></li>
                 <li><a href="{{ route('logout') }}" class="nav-link"><span data-feather="log-out" class="rui-icon rui-icon-stroke-1_5"></span><span>Exit</span><span class="rui-nav-circle"></span></a></li>
               </ul>
             </li>

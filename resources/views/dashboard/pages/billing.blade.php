@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.default')
 
-@section('title', 'Report Verification')
+@section('title', 'Report Single Email Verification')
 @section('breadcumb')
 <div class="rui-page-title">
   <div class="container-fluid">
@@ -9,7 +9,7 @@
         <li class="breadcrumb-item"><a href="{{ route('single') }}">Home</a></li>
       </ol>
     </nav>
-    <h1>Report Verification</h1>
+    <h1>Billing</h1>
   </div>
 </div>
 @endsection
@@ -30,7 +30,7 @@
     @else
     <div class="table-responsive-md">
     <div class="alert alert-brand" role="alert">
-        This Report only Show this month Verification, for more report please contact Support. Thanks
+        This Billing report Show your Billing history
     </div>
     <br/>
     <span class="far fa-file-excel"></span>
@@ -49,7 +49,7 @@
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    EMAIL
+                    INVOICE
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
@@ -57,23 +57,19 @@
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    VERIFICATION TYPE
+                    PLAN
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    SMTP HOST
+                    PAYMENT METHOD
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
                 <th scope="col">
-                    DOMAIN
+                    PRICE
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
-                <!-- <th scope="col">
-                    MX RECORD
-                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
-                </th> -->
                 <th scope="col">
-                    IP TARGET
+                    INVOICE
                     <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
                 </th>
             </tr>
@@ -81,32 +77,30 @@
         <tbody>
         <?php
           $count = 1;
-          // die(var_dump($resource[1]->id));
           ?>
-        @foreach ($resource as $data)
+         @foreach ($resource as $data)
          
-            <tr>
-                <th scope="row"><?=$count?></th>
-                <td>{{ $data->email }}</td>
-                <td>
-                  @if($data->status == 'valid')
-                  <span class="badge badge-success">{{ $data->status }}</span>
-                  @elseif($data->status == 'invalid')
-                  <span class="badge badge-danger">{{ $data->status }}</span>
-                  @else
-                  <span class="badge badge-warning">{{ $data->status }}</span>
-                  @endif
-                </td>
-                <td>{{ $data->validate_type }}</td>
-                <td>{{ $data->smtp_host }}</td>
-                <td>{{ $data->domain }}</td>
-                <!-- <td>{{ $data->mx_record }}</td> -->
-                <td>{{ $data->ip_target }}</td>
-            </tr>
-          <?php
-          $count++;
-          ?>
-        @endforeach
+         <tr>
+             <th scope="row"><?=$count?></th>
+             <td>#{{ $data->invoice_number }}</td>
+             <td>
+               @if($data->status == 'success')
+               <span class="badge badge-success">{{ $data->status }}</span>
+               @elseif($data->status == 'invalid')
+               <span class="badge badge-danger">{{ $data->status }}</span>
+               @else
+               <span class="badge badge-warning">{{ $data->status }}</span>
+               @endif
+             </td>
+             <td>{{ $data->name }}</td>
+             <td>{{ $data->method }}</td>
+             <td>{{ $data->currency }} {{ $data->price }}</td>
+             <td></td>
+         </tr>
+       <?php
+       $count++;
+       ?>
+     @endforeach
         </tbody>
     </table>
     </div>

@@ -60,7 +60,62 @@
           </div>
         </div>
       </div>
-      @include('dashboard.partials.message')
+    </div>
+    <br/>
+    <div class="table-responsive-md">
+    <div class="alert alert-brand" role="alert">
+        This Report only Show this month Verification, for more report please contact Support. Thanks
+    </div>
+    <br/>
+    <span class="far fa-file-excel"></span>
+    <div class="d-flex align-items-center">
+            @if(isset($resource[0]->user_id))
+            <h2 class="card-title mnb-6 mr-auto"></h2><a href="{{ route('reportExport.get', ['slug' => $resource[0]->user_id ]) }}" class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank"><span  data-feather="download" class="rui-icon rui-icon-stroke-1_5"></span>DOWNLOAD REPORT</a>
+            @endif
+    </div>
+  
+    <br/>
+    <table class="rui-datatable table" id="report-bulk-list">
+        <thead>
+            <tr>
+                <th scope="col">
+                    #
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    FILE
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    VERIFICATION AT
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+                <th scope="col">
+                    ACTION
+                    <span data-feather="chevron-down" class="rui-icon rui-icon-stroke-1_5"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+          $count = 1;
+          // die(var_dump($resource[1]->id));
+          ?>
+        @foreach ($report as $data)
+         
+            <tr>
+                <th scope="row"><?=$count?></th>
+                <td>{{ $data->bulk_file }}</td>
+                <td>{{ $data->created_at }}</td>
+                <td><a href="{{ route('bulkFileExport.get', ['slug' => $data->code ]) }}" class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank">DOWNLOAD</a>
+										</td>
+            </tr>
+          <?php
+          $count++;
+          ?>
+        @endforeach
+        </tbody>
+    </table>
     </div>
     @endif
   </div>

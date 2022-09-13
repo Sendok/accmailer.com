@@ -10,6 +10,7 @@ use App\Http\Controllers\BulkController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BillingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,9 +44,12 @@ Route::middleware([
     Route::post('bulk/check', [BulkController::class, 'validateCountBulk'])->name('bulk.check');
     Route::post('bulk/verification', [BulkController::class, 'validateBulk'])->name('bulk.verification');
     Route::get('bulk/export/{slug}', [BulkController::class, 'BulkExport'])->name('bulkExport.get');
+    Route::get('bulk/file/{slug}', [BulkController::class, 'BulkFileExport'])->name('bulkFileExport.get');
     Route::get('api', [ApiController::class, 'index'])->name('api');
     Route::post('api', [ApiController::class, 'generatApiToken'])->name('api.generate');
     Route::get('report', [ReportController::class, 'index'])->name('report');
     Route::get('report/export/{slug}', [ReportController::class, 'reportExport'])->name('reportExport.get');
+    Route::get('billing', [BillingController::class, 'index'])->name('billing');
+    Route::get('billing/invoice', [BillingController::class, 'generateInvoicePDF'])->name('billing.invoice');
     Route::get('logout', [UserController::class, 'Logout'])->name('logout');
 });
