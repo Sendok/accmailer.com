@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.default')
 
-@section('title', 'Report Single Email Verification')
+@section('title', 'Billing')
 @section('breadcumb')
 <div class="rui-page-title">
   <div class="container-fluid">
@@ -22,7 +22,7 @@
         <div class="card">
           <div class="card-body">
             <div class="alert alert-brand" role="alert">
-              You have payment process that yet completed, please complate to continue.
+              You have payment process that yet completed, please complete to continue. <a href="{{ route('payment.cancel.id') }}"><button type="button" class="btn btn-brand btn-hover-outline btn-hover-primary">Click Here to Cancel Payment</button>&nbsp;</a>
             </div>
           </div>
         </div>
@@ -95,7 +95,8 @@
              <td>{{ $data->name }}</td>
              <td>{{ $data->method }}</td>
              <td>{{ $data->currency }} {{ $data->price }}</td>
-             <td></td>
+             <td><a href="{{ route('billing.invoice', ['slug' => $data->invoice_number ]) }}" class="btn btn-brand btn-uniform btn-round btn-sm mnt-8 mnb-8" target="_blank">DOWNLOAD</a>
+			 </td>
          </tr>
        <?php
        $count++;

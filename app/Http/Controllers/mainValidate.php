@@ -329,6 +329,19 @@ function main($email){
  $domain = $get_domain[1];
  $pre_domain = explode('.',$domain);
  $check_domain = $pre_domain[0];
+ if(!isset($pre_domain[1]) || !isset($get_domain[1])){
+  $arr["data"]["status"] = 'invalid';
+  $arr["data"]["email"] = $email;
+  $arr["data"]["smtp"] = false;
+  $arr["data"]["host"]=false;
+  $arr["data"]["class"]=false;
+  $arr["data"]["ttl"]=false;
+  $arr["data"]["type"]=false;
+  $arr["data"]["pri"]=false;
+  $arr["data"]["target"]=false;
+  $arr["data"]["target"]=false;
+  return json_encode($arr);
+ } else
  if($check_domain == 'gmail'){
     if ( getmxrr ($domain, $MXHost))  
     {            
@@ -354,32 +367,46 @@ function main($email){
     if ( getmxrr ($domain, $MXHost))  
     {            
     } 
-    $ConnectAddress = $MXHost[0]; 
-    $data = dns_get_record($domain, DNS_MX);
-    $ve = new yahooCheck($email, 'dhendik@algostudio.net');
-    if($ve->verify()){
-      $arr["data"]["status"] = 'valid';
-      $arr["data"]["email"] = $email;
-      $arr["data"]["smtp"] = $ConnectAddress;
-      $arr["data"]["host"]=$data[0]['host'] ;
-      $arr["data"]["class"]=$data[0]['class'] ;
-      $arr["data"]["ttl"]=$data[0]['ttl'] ;
-      $arr["data"]["type"]=$data[0]['type'] ;
-      $arr["data"]["pri"]=$data[0]['pri'] ;
-      $arr["data"]["target"]=$data[0]['target'] ;
-      $arr["data"]["target"]=gethostbyname($data[0]['target']) ;
-    } else {
+    if(!isset($MXHost[0])){
       $arr["data"]["status"] = 'invalid';
       $arr["data"]["email"] = $email;
-      $arr["data"]["smtp"] = $ConnectAddress;
-      $arr["data"]["host"]=$data[0]['host'] ;
-      $arr["data"]["class"]=$data[0]['class'] ;
-      $arr["data"]["ttl"]=$data[0]['ttl'] ;
-      $arr["data"]["type"]=$data[0]['type'] ;
-      $arr["data"]["pri"]=$data[0]['pri'] ;
-      $arr["data"]["target"]=$data[0]['target'] ;
-      $arr["data"]["target"]=gethostbyname($data[0]['target']) ;
+      $arr["data"]["smtp"] = false;
+      $arr["data"]["host"]=false;
+      $arr["data"]["class"]=false;
+      $arr["data"]["ttl"]=false;
+      $arr["data"]["type"]=false;
+      $arr["data"]["pri"]=false;
+      $arr["data"]["target"]=false;
+      $arr["data"]["target"]=false;
+    } else {
+      $ConnectAddress = $MXHost[0]; 
+      $data = dns_get_record($domain, DNS_MX);
+      $ve = new yahooCheck($email, 'dhendik@algostudio.net');
+      if($ve->verify()){
+        $arr["data"]["status"] = 'valid';
+        $arr["data"]["email"] = $email;
+        $arr["data"]["smtp"] = $ConnectAddress;
+        $arr["data"]["host"]=$data[0]['host'] ;
+        $arr["data"]["class"]=$data[0]['class'] ;
+        $arr["data"]["ttl"]=$data[0]['ttl'] ;
+        $arr["data"]["type"]=$data[0]['type'] ;
+        $arr["data"]["pri"]=$data[0]['pri'] ;
+        $arr["data"]["target"]=$data[0]['target'] ;
+        $arr["data"]["target"]=gethostbyname($data[0]['target']) ;
+      } else {
+        $arr["data"]["status"] = 'invalid';
+        $arr["data"]["email"] = $email;
+        $arr["data"]["smtp"] = $ConnectAddress;
+        $arr["data"]["host"]=$data[0]['host'] ;
+        $arr["data"]["class"]=$data[0]['class'] ;
+        $arr["data"]["ttl"]=$data[0]['ttl'] ;
+        $arr["data"]["type"]=$data[0]['type'] ;
+        $arr["data"]["pri"]=$data[0]['pri'] ;
+        $arr["data"]["target"]=$data[0]['target'] ;
+        $arr["data"]["target"]=gethostbyname($data[0]['target']) ;
+      }
     }
+    
     return json_encode($arr);
     
  } else 

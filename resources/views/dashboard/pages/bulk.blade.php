@@ -22,7 +22,7 @@
       <div class="card">
         <div class="card-body">
           <div class="alert alert-brand" role="alert">
-            You have payment process that yet completed, please complate to continue.
+            You have payment process that yet completed, please complete to continue. <a href="{{ route('payment.cancel.id') }}"><button type="button" class="btn btn-brand btn-hover-outline btn-hover-primary">Click Here to Cancel Payment</button>&nbsp;</a>
           </div>
         </div>
       </div>

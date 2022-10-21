@@ -39,6 +39,7 @@ Route::middleware([
     Route::get('checkout/plan/{slug}', [CheckoutController::class, 'checkoutPlan'])->name('checkout.detail');
     Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
     Route::get('payment/cancel', [PaymentController::class, 'paymentPaypalCancel'])->name('payment.cancel');
+    Route::get('payment/cancelId', [PaymentController::class, 'paymentPaypalCancelId'])->name('payment.cancel.id');
     Route::get('payment/success', [PaymentController::class, 'paymentPaypalSuccess'])->name('payment.success');
     Route::get('bulk', [BulkController::class, 'index'])->name('bulk');
     Route::post('bulk/check', [BulkController::class, 'validateCountBulk'])->name('bulk.check');
@@ -50,6 +51,9 @@ Route::middleware([
     Route::get('report', [ReportController::class, 'index'])->name('report');
     Route::get('report/export/{slug}', [ReportController::class, 'reportExport'])->name('reportExport.get');
     Route::get('billing', [BillingController::class, 'index'])->name('billing');
-    Route::get('billing/invoice', [BillingController::class, 'generateInvoicePDF'])->name('billing.invoice');
+    Route::get('billing/invoice/{slug}', [BillingController::class, 'generateInvoicePDF'])->name('billing.invoice');
     Route::get('logout', [UserController::class, 'Logout'])->name('logout');
+    Route::get('/invoice', function () {
+        return view('dashboard/partials/invoice');
+    });
 });

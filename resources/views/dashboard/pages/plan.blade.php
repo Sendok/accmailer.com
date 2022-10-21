@@ -22,7 +22,7 @@
         <div class="card">
           <div class="card-body">
             <div class="alert alert-brand" role="alert">
-              You have payment process that yet completed, please complate to continue.
+              You have payment process that yet completed, please complate to continue. <a href="{{ route('payment.cancel.id') }}"><button type="button" class="btn btn-brand btn-hover-outline btn-hover-primary">Click Here to Cancel Payment</button>&nbsp;</a>
             </div>
           </div>
         </div>
@@ -55,6 +55,8 @@
                         <div class="plan-button">
                             @if(isset($resource["plan_id"]) && $resource["plan_id"] == 1)
                             <button type="button" class="btn btn-outline-primary btn-block justify-content-center " disabled>Your Current Plan</button>
+                            @elseif(isset($resource["plan_id"]) && $resource["plan_id"] > 1  && $resource["quota"] > 0)
+                            <button type="button" class="btn btn-outline-primary btn-block justify-content-center " disabled>You Current Plan is more Cool</button>
                             @else
                             <a href="{{ route('checkout.detail', ['slug' => 1]) }}" class="btn btn-outline-primary btn-block justify-content-center submit">Checkout</a>
                             @endif
@@ -89,6 +91,8 @@
                     <div class="plan-button">
                         @if(isset($resource["plan_id"]) && $resource["plan_id"] == 2 && $resource["quota"] > 0)
                         <button type="button" class="btn btn-outline-success btn-block justify-content-center" disabled>Your Current Plan</button>
+                        @elseif(isset($resource["plan_id"]) && $resource["plan_id"] > 2 && $resource["quota"] > 0)
+                        <button type="button" class="btn btn-outline-primary btn-block justify-content-center " disabled>You Current Plan is more Cool</button>
                         @elseif(isset($resource["plan_id"]) && $resource["plan_id"] == 2 && $resource["quota"] == 0)
                         <a href="{{ route('checkout.detail', ['slug' => 2]) }}" class="btn btn-outline-success btn-block justify-content-center">Continue Plan</a>
                         @else

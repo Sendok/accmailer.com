@@ -104,8 +104,11 @@ $url = ucfirst(str_replace('/','',$route));
                 <div class="container header">
                     <!-- Navbar Brand-->
                     <a class="navbar-brand" href="/">
+                        <strong class="navbar-brand-regular" style="font-size: 20px;line-height: 60px; color: #FCFEF8;"><span style="border: 3px solid #FCFEF8; background-color: #FCFEF8; color: #900AEC">ACC</span><span style="border: 3px solid #FCFEF8;">MAILER</span></strong>
+                        <strong class="navbar-brand-sticky" style="font-size: 20px;line-height: 60px; color: #900AEC;"><span style="border: 3px solid #900AEC; background-color: #900AEC; color: #FCFEF8">ACC</span><span style="border: 3px solid #900AEC;">MAILER</span></strong>
+<!--                         
                         <img class="navbar-brand-regular" src="assets_landing/img/logo/logo-white.png" alt="brand-logo">
-                        <img class="navbar-brand-sticky" src="assets_landing/img/logo/logo.png" alt="sticky brand-logo">
+                        <img class="navbar-brand-sticky" src="assets_landing/img/logo/logo.png" alt="sticky brand-logo"> -->
                     </a>
                     <div class="ml-auto"></div>
                     <!-- Navbar -->

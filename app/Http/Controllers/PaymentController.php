@@ -86,7 +86,7 @@ class PaymentController extends Controller
         } else 
         // method payment for midtrans
         if($method == 'midtrans'){
-            $price = $this->user->getIDRCurrency($price);
+            $price = (int)$this->user->getIDRCurrency($price);
             // Set your Merchant Server Key
             \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY','');
             // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -268,5 +268,28 @@ class PaymentController extends Controller
             $this->updateFailedPayment($invoice_number);
         }
         return Response::json($request, 200);
+    }
+    // payment paypal cancel action by ID invoice
+    public function paymentPaypalCancelId(Request $request){
+        $status = 'payment-process';
+        $user = $this->user->getUser();
+        $user_id = $user->id;
+        $plan = DB::select("SELECT * FROM invoice where status = '".$status."' and user_id = ".$user_id);
+        foreach($plan as $item){
+            //update transaction
+            DB::update(
+                'update payment_transaction set status = "failed" where invoice_id = ?',
+                [$item->id]
+            );
+            // update invoice status
+            DB::update(
+                'update invoice set status = "failed" where id = ?',
+                [$item->id]
+            );
+        }
+        
+        
+        // get data from paypal
+        return redirect()->route('plan');
     }
 }

@@ -39,7 +39,7 @@ if ($query && $query['status'] == 'success') {
           <div class="card-body">
             @if(isset($resource["payment_status"]))
             <div class="alert alert-brand" role="alert">
-              You have payment process that yet completed, please complate to continue.
+              You have payment process that yet completed, please complate to continue.<a href="{{ route('payment.cancel.id') }}"><button type="button" class="btn btn-brand btn-hover-outline btn-hover-primary">Click Here to Cancel Payment</button>&nbsp;</a>
             </div>
             @elseif(isset($resource["bulk_inuse"]))
             <div class="alert alert-warning" role="alert">

@@ -17,7 +17,7 @@ class SessionHelper
         $date = date('Y-m-d H:i:s');
         $user = $this->getUser();
         $user_id = $user->id;
-        $getUserPlan = DB::select("select * from user_plan where user_id = ".$user_id." and (end_at >= '".$date."' or end_at is null)");
+        $getUserPlan = DB::select("select * from user_plan where user_id = ".$user_id." and (end_at >= '".$date."' or end_at is null) order by id DESC limit 1");
         if($getUserPlan == false){
             $getUserPlan = null;
         } else {

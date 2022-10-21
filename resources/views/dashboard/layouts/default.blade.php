@@ -237,7 +237,8 @@
         
         try {
           document.execCommand('copy');
-          alert('API key copied');
+          // alert('API key copied');
+          $("#tokenCopy").modal();
         }
         catch (err) {
           alert('Unable to copy text');

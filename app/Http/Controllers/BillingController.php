@@ -27,7 +27,7 @@ class BillingController extends Controller
 			$data = array(
 				'payment_status'=>'payment-process'
 			);
-			return view('dashboard.pages.report',["active"=>"billing","resource"=>$data]);
+			return view('dashboard.pages.billing',["active"=>"billing","resource"=>$data]);
 		} else 
         if($getPlan == null){
             return redirect()->route('plan');
@@ -46,10 +46,19 @@ class BillingController extends Controller
             
         }
     }
-    public function generateInvoicePDF()
+    public function generateInvoicePDF($slug)
     {
-        $pdf = PDF::loadView('dashboard.partials.invoice');
+        $data = array();
+        $report = DB::select("SELECT * FROM billing_reports where invoice_number =".$slug."");
+        if($report == false){
+            $data =[];
+        } else {
+            $data = $report[0];
+            
+        }
+        // die(var_dump($data->invoice_number));
+        $pdf = PDF::loadView('dashboard.partials.invoice',["resource"=>$data]);
 
-        return $pdf->download('AccMailerInvoice#12121.pdf');
+        return $pdf->download('AccMailerInvoice#'.$slug.'.pdf');
     }
 }

@@ -24,7 +24,7 @@ class CheckoutController extends Controller
         if($type == 'free'){
             $type = 'Free Daily';
         }
-        $plan_amount_idr = $this->user->getIDRCurrency($plan_amount);
+        $plan_amount_idr = (int)$this->user->getIDRCurrency($plan_amount);
         $data = array(
             "plan_name"=>$plan_name,
             "plan_price"=>$plan_amount,

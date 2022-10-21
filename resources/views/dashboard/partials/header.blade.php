@@ -1,6 +1,6 @@
 <div class="rui-yaybar-bg"></div>
     <nav class="rui-navbar rui-navbar-top rui-navbar-sticky">
-      <div class="rui-navbar-brand"><a href="{{ route('single') }}" class="rui-navbar-logo"><img src="./assets/images/logo.png" data-src-night="./assets/images/logo-white.png" data-src-day="./assets/images/logo.png" alt="" width="30" height="30"></a><button class="yay-toggle rui-yaybar-toggle" type="button"><span></span></button></div>
+      <div class="rui-navbar-brand"><a href="{{ route('single') }}" class="rui-navbar-logo"><img src="./assets/images/logo.png" data-src-night="./assets/images/logo-white.png" data-src-day="./assets/images/logo.png" alt="" width="100%" height="30"></a><button class="yay-toggle rui-yaybar-toggle" type="button"><span></span></button></div>
       <div class="container-fluid">
         <div class="rui-navbar-content">
           <ul class="nav">
@@ -63,7 +63,7 @@
     </nav>
 
     <div class="rui-navbar rui-navbar-mobile">
-      <div class="rui-navbar-head"><button class="rui-yaybar-toggle rui-yaybar-toggle-inverse yay-toggle" type="button" aria-label="Toggle side navigation"><span></span></button><a class="rui-navbar-logo mr-auto" href="dashboard.html"><img src="./assets/images/logo.png" data-src-night="./assets/images/logo-white.png" data-src-day="./assets/images/logo.png" alt="" width="30" height="30"></a>
+      <div class="rui-navbar-head"><button class="rui-yaybar-toggle rui-yaybar-toggle-inverse yay-toggle" type="button" aria-label="Toggle side navigation"><span></span></button><a class="rui-navbar-logo mr-auto" href="dashboard.html"><img src="./assets/images/logo.png" data-src-night="./assets/images/logo-white.png" data-src-day="./assets/images/logo.png" alt="" width="100%" height="30"></a>
         <div class="dropdown dropdown-triangle"><a class="dropdown-item rui-navbar-avatar" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/avatar-1.png" alt=""></a>
           <ul class="dropdown-menu nav">
             <li><a href="profile.html" class="nav-link"><span data-feather="plus-circle" class="rui-icon rui-icon-stroke-1_5"></span><span>Create new Post</span><span class="rui-nav-circle"></span></a></li>

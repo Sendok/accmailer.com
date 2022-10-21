@@ -99,3 +99,21 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="tokenCopy" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="bulkModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="window.location.href=window.location.href">
+                    <span data-feather="x" class="rui-icon rui-icon-stroke-1_5"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>API key copied</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-brand" data-dismiss="modal" onClick="window.location.href=window.location.href">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

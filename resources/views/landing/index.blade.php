@@ -99,8 +99,14 @@ if ($query && $query['status'] == 'success') {
                 <div class="container header">
                     <!-- Navbar Brand-->
                     <a class="navbar-brand" href="/">
-                        <img class="navbar-brand-regular" src="assets_landing/img/logo/logo-white.png" alt="brand-logo">
-                        <img class="navbar-brand-sticky" src="assets_landing/img/logo/logo.png" alt="sticky brand-logo">
+                        <!-- <td style="font-size: 30px;line-height: 60px; color: #900AEC;"> -->
+                        <!-- <strong class="navbar-brand-regular" style="font-size: 20px;line-height: 60px; color: #900AEC;"><span style="border: 3px solid #900AEC; background-color: #900AEC; color: #FCFEF8">ACC</span><span style="border: 3px solid #900AEC;">MAILER</span></strong> -->
+                        <img class="navbar-brand-regular" src="assets_landing/img/logo/logo-white.png" style="width:100%; height:30px;" alt="brand-logo">
+                        <img class="navbar-brand-sticky" src="assets_landing/img/logo/logo.png" style="width:100%; height:30px;" alt="sticky brand-logo"> 
+                        <!-- <strong class="navbar-brand-regular" style="font-size: 20px;line-height: 60px; color: #FCFEF8;"><span style="border: 3px solid #FCFEF8; background-color: #FCFEF8; color: #900AEC">ACC</span><span style="border: 3px solid #FCFEF8;">MAILER</span></strong>
+                        <strong class="navbar-brand-sticky" style="font-size: 20px;line-height: 60px; color: #900AEC;"><span style="border: 3px solid #900AEC; background-color: #900AEC; color: #FCFEF8">ACC</span><span style="border: 3px solid #900AEC;">MAILER</span></strong> -->
+                        <!-- </td> -->
+                        
                     </a>
                     <div class="ml-auto"></div>
                     <!-- Navbar -->
@@ -126,17 +132,13 @@ if ($query && $query['status'] == 'success') {
                     </ul>
                     <!-- Navbar Icons -->
                     <ul class="navbar-nav icons">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#search">
-                                <i class="fas fa-search"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item social">
+                       
+                        <!-- <li class="nav-item social">
                             <a href="#" class="nav-link"><i class="fab fa-facebook-f"></i></a>
                         </li>
                         <li class="nav-item social">
                             <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
-                        </li>
+                        </li> -->
                     </ul>
 
                     <!-- Navbar Toggler -->
@@ -182,9 +184,9 @@ if ($query && $query['status'] == 'success') {
                     <!-- Welcome Intro Start -->
                     <div class="col-12 col-md-7">
                         <div class="welcome-intro">
-                            <h3 class="text-white ">Accurate. Anti Fraud. Easy to Use </h3>
+                            <h3 class="text-white ">Accurate. Powerful. Easy to Use </h3>
                             <h1 class="text-white">Email Verification Services</h1>
-                            <p class="text-white my-4">Reduce email bounce, improve email deliverability and increase marketing ROI. Lets try Validating your Email:</p>
+                            <p class="text-white my-4">Reduce bounce emails, fake emails, disposable emails, increase email delivery capabilities and increase marketing ROI. Let's try to Validate your Email:</p>
                             <div class="contact-box text-center">
                                 <!-- Contact Form -->
                                 <form id="post-verif" method="POST" action="{{ route('validateGuest.post') }}">
@@ -200,7 +202,7 @@ if ($query && $query['status'] == 'success') {
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-bordered-white btn-block mt-3"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>Varification</button>
+                                            <button type="submit" class="btn btn-bordered-white btn-block mt-3"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>Validate</button>
                                         </div>
                                         
                                     </div>
@@ -254,14 +256,14 @@ if ($query && $query['status'] == 'success') {
                     <div class="col-12 col-md-6 col-lg-4 res-margin">
                         <!-- Single Promo -->
                         <div class="single-promo color-1 bg-hover hover-bottom text-center p-5">
-                            <h4 class="mb-3">Power your sales teams</h4>
-                            <p>A verified list gives your sales teams the confidence to surge ahead. Help your sales teams improve their conversion rates by giving them accurate emails.</p>
+                            <h4 class="mb-3">Power your Sales Teams and Campaign</h4>
+                            <p>Verified email lists make sales teams feel confident to get new customers and make it easier for sales teams to spread campaign products with accurate email lists</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 res-margin">
                         <!-- Single Promo -->
                         <div class="single-promo color-2 bg-hover active hover-bottom text-center p-5">
-                            <h4 class="mb-3">Super-charge your efficiency</h4>
+                            <h4 class="mb-3">Power your efficiency</h4>
                             <p>Make your sales and marketing efforts more efficient. Email verification helps you stop wasting time on email bounces and become more efficient at promotions.</p>
                         </div>
                     </div>
@@ -560,7 +562,7 @@ if ($query && $query['status'] == 'success') {
                                     </div>
                                     <!-- Plan Button -->
                                     <div class="plan-button">
-                                        <a href="/plan/1" class="btn btn-bordered mt-3">Get Started</a>
+                                        <a href="plan" class="btn btn-bordered mt-3">Get Started</a>
                                     </div>
                                 </div>
                             </div>
@@ -587,7 +589,7 @@ if ($query && $query['status'] == 'success') {
                                     </div>
                                     <!-- Plan Button -->
                                     <div class="plan-button">
-                                        <a href="plan/2" class="btn btn-bordered mt-3">Get Started</a>
+                                        <a href="plan" class="btn btn-bordered mt-3">Get Started</a>
                                     </div>
                                 </div>
                             </div>
@@ -612,7 +614,7 @@ if ($query && $query['status'] == 'success') {
                                     </div>
                                     <!-- Plan Button -->
                                     <div class="plan-button">
-                                        <a href="/plan/3" class="btn btn-bordered mt-3">Contact Us</a>
+                                        <a href="plan" class="btn btn-bordered mt-3">Get Started</a>
                                     </div>
                                 </div>
                             </div>
@@ -633,7 +635,7 @@ if ($query && $query['status'] == 'success') {
                             <h2 class="text-white">Not sure what to choose?</h2>
                             <p class="text-white d-none d-sm-block mt-4"></p>
                             <p class="text-white d-block d-sm-none mt-4"></p>
-                            <a href="/contact" class="btn btn-bordered-white mt-4">Contact Us</a>
+                            <a href="https://api.whatsapp.com/send/?phone=6285791566727&text=Hai%20I%27m+interested+in+your+Verification%20Email%20Services&type=phone_number&app_absent=0" class="btn btn-bordered-white mt-4" target="_blank">Contact Us</a>
                         </div>
                     </div>
                 </div>
